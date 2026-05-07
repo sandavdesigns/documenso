@@ -1,6 +1,6 @@
 import { PDFDocument } from '@cantoo/pdf-lib';
 import { PDF } from '@libpdf/core';
-import type { DocumentData, Envelope, EnvelopeItem, Field } from '@prisma/client';
+import type { DocumentData, Envelope, EnvelopeItem, Field, Recipient } from '@prisma/client';
 import {
   DocumentStatus,
   EnvelopeType,
@@ -273,6 +273,7 @@ export const run = async ({
         envelope,
         envelopeItem,
         envelopeItemFields,
+        recipients: envelope.recipients,
         isRejected,
         rejectionReason,
         pdfData,
@@ -357,11 +358,44 @@ type DecorateAndSignPdfOptions = {
   envelope: Pick<Envelope, 'id' | 'title' | 'useLegacyFieldInsertion' | 'internalVersion'>;
   envelopeItem: EnvelopeItem & { documentData: DocumentData };
   envelopeItemFields: Field[];
+  recipients: Array<Pick<Recipient, 'name' | 'email' | 'role' | 'signingStatus'>>;
   isRejected: boolean;
   rejectionReason: string;
   pdfData: Uint8Array;
   certificateDoc: PDF | null;
   auditLogDoc: PDF | null;
+};
+
+const formatRecipientForPdfSignature = (
+  recipient: Pick<Recipient, 'name' | 'email' | 'role' | 'signingStatus'>,
+) => {
+  const name = recipient.name?.trim();
+
+  return name ? `${name} <${recipient.email}>` : recipient.email;
+};
+
+const getPdfSignatureMetadata = (
+  recipients: Array<Pick<Recipient, 'name' | 'email' | 'role' | 'signingStatus'>>,
+) => {
+  const signedRecipients = recipients.filter(
+    (recipient) =>
+      recipient.role !== RecipientRole.CC && recipient.signingStatus === SigningStatus.SIGNED,
+  );
+
+  if (signedRecipients.length === 0) {
+    return {
+      reason: 'Signed by Documenso',
+      contactInfo: undefined,
+    };
+  }
+
+  const signers = signedRecipients.map(formatRecipientForPdfSignature);
+  const signerEmails = signedRecipients.map((recipient) => recipient.email);
+
+  return {
+    reason: `Signed in Documenso by ${signers.join(', ')}`,
+    contactInfo: signerEmails.join(', '),
+  };
 };
 
 /**
@@ -371,6 +405,7 @@ const decorateAndSignPdf = async ({
   envelope,
   envelopeItem,
   envelopeItemFields,
+  recipients,
   isRejected,
   rejectionReason,
   pdfData,
@@ -484,7 +519,13 @@ const decorateAndSignPdf = async ({
 
   pdfDoc = await PDF.load(await pdfDoc.save({ useXRefStream: true }));
 
-  const pdfBytes = await signPdf({ pdf: pdfDoc });
+  const pdfSignatureMetadata = getPdfSignatureMetadata(recipients);
+
+  const pdfBytes = await signPdf({
+    pdf: pdfDoc,
+    reason: pdfSignatureMetadata.reason,
+    contactInfo: pdfSignatureMetadata.contactInfo,
+  });
 
   const { name } = path.parse(envelopeItem.title);
 
