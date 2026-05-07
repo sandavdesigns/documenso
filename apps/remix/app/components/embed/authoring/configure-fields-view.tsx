@@ -17,6 +17,13 @@ import type { TRecipientLite } from '@documenso/lib/types/recipient';
 import { nanoid } from '@documenso/lib/universal/id';
 import { ADVANCED_FIELD_TYPES_WITH_OPTIONAL_SETTING } from '@documenso/lib/utils/advanced-fields-helpers';
 import { getDocumentDataUrlForPdfViewer } from '@documenso/lib/utils/envelope-download';
+import {
+  DEFAULT_FIELD_HEIGHT_PX,
+  DEFAULT_FIELD_WIDTH_PX,
+  MIN_FIELD_HEIGHT_PX,
+  MIN_FIELD_WIDTH_PX,
+  getDefaultFieldSize,
+} from '@documenso/ui/lib/field-default-size';
 import { getRecipientColorStyles } from '@documenso/ui/lib/recipient-colors';
 import { cn } from '@documenso/ui/lib/utils';
 import { Button } from '@documenso/ui/primitives/button';
@@ -34,12 +41,6 @@ import PDFViewerLazy from '~/components/general/pdf-viewer/pdf-viewer-lazy';
 
 import type { TConfigureEmbedFormSchema } from './configure-document-view.types';
 import type { TConfigureFieldsFormSchema } from './configure-fields-view.types';
-
-const MIN_HEIGHT_PX = 12;
-const MIN_WIDTH_PX = 36;
-
-const DEFAULT_HEIGHT_PX = MIN_HEIGHT_PX * 2.5;
-const DEFAULT_WIDTH_PX = MIN_WIDTH_PX * 2.5;
 
 export type ConfigureFieldsViewProps = {
   configData: TConfigureEmbedFormSchema;
@@ -151,9 +152,13 @@ export const ConfigureFieldsView = ({
   );
 
   const fieldBounds = useRef({
-    height: DEFAULT_HEIGHT_PX,
-    width: DEFAULT_WIDTH_PX,
+    height: DEFAULT_FIELD_HEIGHT_PX,
+    width: DEFAULT_FIELD_WIDTH_PX,
   });
+
+  useEffect(() => {
+    fieldBounds.current = getDefaultFieldSize(selectedField);
+  }, [selectedField]);
 
   const selectedRecipientIndex = recipients.findIndex((r) => r.id === selectedRecipient?.id);
   const selectedRecipientStyles = getRecipientColorStyles(selectedRecipientIndex);
@@ -437,8 +442,7 @@ export const ConfigureFieldsView = ({
       }
 
       fieldBounds.current = {
-        height: Math.max(DEFAULT_HEIGHT_PX),
-        width: Math.max(DEFAULT_WIDTH_PX),
+        ...getDefaultFieldSize(selectedField),
       };
     });
 
@@ -450,7 +454,7 @@ export const ConfigureFieldsView = ({
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [selectedField]);
 
   // Close drawer when a field is selected on mobile
   useEffect(() => {
@@ -559,10 +563,10 @@ export const ConfigureFieldsView = ({
                       <FieldItem
                         key={field.formId}
                         field={field}
-                        minHeight={MIN_HEIGHT_PX}
-                        minWidth={MIN_WIDTH_PX}
-                        defaultHeight={DEFAULT_HEIGHT_PX}
-                        defaultWidth={DEFAULT_WIDTH_PX}
+                        minHeight={MIN_FIELD_HEIGHT_PX}
+                        minWidth={MIN_FIELD_WIDTH_PX}
+                        defaultHeight={DEFAULT_FIELD_HEIGHT_PX}
+                        defaultWidth={DEFAULT_FIELD_WIDTH_PX}
                         onResize={(node) => onFieldResize(node, index)}
                         onMove={(node) => onFieldMove(node, index)}
                         onRemove={() => remove(index)}

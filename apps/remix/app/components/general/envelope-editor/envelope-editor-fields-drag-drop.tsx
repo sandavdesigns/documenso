@@ -23,15 +23,14 @@ import { FIELD_META_DEFAULT_VALUES } from '@documenso/lib/types/field-meta';
 import { nanoid } from '@documenso/lib/universal/id';
 import { canRecipientFieldsBeModified } from '@documenso/lib/utils/recipients';
 import { SignatureIcon } from '@documenso/ui/icons/signature';
+import {
+  DEFAULT_FIELD_HEIGHT_PX,
+  DEFAULT_FIELD_WIDTH_PX,
+  getDefaultFieldSize,
+} from '@documenso/ui/lib/field-default-size';
 import { getRecipientColorStyles } from '@documenso/ui/lib/recipient-colors';
 import { cn } from '@documenso/ui/lib/utils';
 import { FRIENDLY_FIELD_TYPE } from '@documenso/ui/primitives/document-flow/types';
-
-const MIN_HEIGHT_PX = 12;
-const MIN_WIDTH_PX = 36;
-
-const DEFAULT_HEIGHT_PX = MIN_HEIGHT_PX * 2.5;
-const DEFAULT_WIDTH_PX = MIN_WIDTH_PX * 2.5;
 
 export const fieldButtonList = [
   {
@@ -129,9 +128,13 @@ export const EnvelopeEditorFieldDragDrop = ({
   });
 
   const fieldBounds = useRef({
-    height: 0,
-    width: 0,
+    height: DEFAULT_FIELD_HEIGHT_PX,
+    width: DEFAULT_FIELD_WIDTH_PX,
   });
+
+  useEffect(() => {
+    fieldBounds.current = getDefaultFieldSize(selectedField);
+  }, [selectedField]);
 
   const onMouseMove = useCallback(
     (event: MouseEvent) => {
@@ -226,8 +229,7 @@ export const EnvelopeEditorFieldDragDrop = ({
       }
 
       fieldBounds.current = {
-        height: Math.max(DEFAULT_HEIGHT_PX),
-        width: Math.max(DEFAULT_WIDTH_PX),
+        ...getDefaultFieldSize(selectedField),
       };
     });
 
@@ -239,7 +241,7 @@ export const EnvelopeEditorFieldDragDrop = ({
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [selectedField]);
 
   useEffect(() => {
     if (selectedField) {

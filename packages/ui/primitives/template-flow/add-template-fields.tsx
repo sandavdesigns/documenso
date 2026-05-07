@@ -53,6 +53,13 @@ import {
   DocumentFlowFormContainerStep,
 } from '@documenso/ui/primitives/document-flow/document-flow-root';
 import { FieldItem } from '@documenso/ui/primitives/document-flow/field-item';
+import {
+  DEFAULT_FIELD_HEIGHT_PX,
+  DEFAULT_FIELD_WIDTH_PX,
+  MIN_FIELD_HEIGHT_PX,
+  MIN_FIELD_WIDTH_PX,
+  getDefaultFieldSize,
+} from '@documenso/ui/lib/field-default-size';
 import type { DocumentFlowStep } from '@documenso/ui/primitives/document-flow/types';
 import { FRIENDLY_FIELD_TYPE } from '@documenso/ui/primitives/document-flow/types';
 import { Popover, PopoverContent, PopoverTrigger } from '@documenso/ui/primitives/popover';
@@ -67,12 +74,6 @@ import {
   type TAddTemplateFieldsFormSchema,
   ZAddTemplateFieldsFormSchema,
 } from './add-template-fields.types';
-
-const MIN_HEIGHT_PX = 12;
-const MIN_WIDTH_PX = 36;
-
-const DEFAULT_HEIGHT_PX = MIN_HEIGHT_PX * 2.5;
-const DEFAULT_WIDTH_PX = MIN_WIDTH_PX * 2.5;
 
 export type AddTemplateFieldsFormProps = {
   documentFlow: DocumentFlowStep;
@@ -308,9 +309,13 @@ export const AddTemplateFieldsFormPartial = ({
   });
 
   const fieldBounds = useRef({
-    height: 0,
-    width: 0,
+    height: DEFAULT_FIELD_HEIGHT_PX,
+    width: DEFAULT_FIELD_WIDTH_PX,
   });
+
+  useEffect(() => {
+    fieldBounds.current = getDefaultFieldSize(selectedField);
+  }, [selectedField]);
 
   const onMouseMove = useCallback(
     (event: MouseEvent) => {
@@ -472,8 +477,7 @@ export const AddTemplateFieldsFormPartial = ({
       }
 
       fieldBounds.current = {
-        height: Math.max(DEFAULT_HEIGHT_PX),
-        width: Math.max(DEFAULT_WIDTH_PX),
+        ...getDefaultFieldSize(selectedField),
       };
     });
 
@@ -485,7 +489,7 @@ export const AddTemplateFieldsFormPartial = ({
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [selectedField]);
 
   useEffect(() => {
     setSelectedSigner(recipients[0]);
@@ -611,10 +615,10 @@ export const AddTemplateFieldsFormPartial = ({
                     recipientIndex={recipientIndex === -1 ? 0 : recipientIndex}
                     field={field}
                     disabled={selectedSigner?.id !== field.recipientId}
-                    minHeight={MIN_HEIGHT_PX}
-                    minWidth={MIN_WIDTH_PX}
-                    defaultHeight={DEFAULT_HEIGHT_PX}
-                    defaultWidth={DEFAULT_WIDTH_PX}
+                    minHeight={MIN_FIELD_HEIGHT_PX}
+                    minWidth={MIN_FIELD_WIDTH_PX}
+                    defaultHeight={DEFAULT_FIELD_HEIGHT_PX}
+                    defaultWidth={DEFAULT_FIELD_WIDTH_PX}
                     passive={isFieldWithinBounds && !!selectedField}
                     onFocus={() => setLastActiveField(field)}
                     onBlur={() => {
