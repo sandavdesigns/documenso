@@ -393,8 +393,8 @@ const getPdfSignatureMetadata = (
   const signerEmails = signedRecipients.map((recipient) => recipient.email);
 
   return {
-    reason: `Signed in Documenso by ${signers.join(', ')}`,
-    contactInfo: signerEmails.join(', '),
+    reason: `Signed in Documenso by:\n${signers.join('\n')}`,
+    contactInfo: signerEmails.join('\n'),
   };
 };
 
