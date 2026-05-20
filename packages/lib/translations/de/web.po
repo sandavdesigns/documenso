@@ -266,12 +266,23 @@ msgstr "{0}-Feld"
 #. placeholder {1}: envelope.title
 #: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
 msgid "{0} has invited you to {recipientActionVerb} the document \"{1}\"."
-msgstr "{0} hat Sie eingeladen, das Dokument \"{1}\" {recipientActionVerb}."
+msgstr "{0} hat Sie zu folgender Aktion für das Dokument \"{1}\" eingeladen: {recipientActionVerb}."
+
+#. placeholder {0}: team.name
+#. placeholder {1}: envelope.title
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "{0} has invited you to sign the document \"{1}\"."
+msgstr "{0} hat Sie eingeladen, das Dokument \"{1}\" zu unterschreiben."
 
 #. placeholder {0}: team.name
 #: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
 msgid "{0} invited you to {recipientActionVerb} a document"
-msgstr "{0} hat dich eingeladen, ein Dokument {recipientActionVerb}"
+msgstr "{0} hat dich zu folgender Aktion für ein Dokument eingeladen: {recipientActionVerb}"
+
+#. placeholder {0}: team.name
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "{0} invited you to sign a document"
+msgstr "{0} hat dich eingeladen, ein Dokument zu unterschreiben"
 
 #. placeholder {0}: remaining.documents
 #. placeholder {1}: quota.documents
@@ -286,7 +297,14 @@ msgstr "{0} von {1} Dokumenten verbleibend in diesem Monat."
 #. placeholder {2}: envelope.title
 #: packages/lib/server-only/document/resend-document.ts
 msgid "{0} on behalf of \"{1}\" has invited you to {recipientActionVerb} the document \"{2}\"."
-msgstr "{0} im Namen von \"{1}\" hat Sie eingeladen, das Dokument \"{2}\" {recipientActionVerb}."
+msgstr "{0} im Namen von \"{1}\" hat Sie zu folgender Aktion für das Dokument \"{2}\" eingeladen: {recipientActionVerb}."
+
+#. placeholder {0}: user.name || user.email
+#. placeholder {1}: envelope.team.name
+#. placeholder {2}: envelope.title
+#: packages/lib/server-only/document/resend-document.ts
+msgid "{0} on behalf of \"{1}\" has invited you to sign the document \"{2}\"."
+msgstr "{0} im Auftrag von \"{1}\" hat Sie eingeladen, das Dokument \"{2}\" zu unterschreiben."
 
 #. placeholder {0}: organisation.name
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl._index.tsx
@@ -347,15 +365,23 @@ msgstr "{inviterName} hat das Dokument<0/>\"{documentName}\" storniert"
 #. placeholder {0}: _(actionVerb).toLowerCase()
 #: packages/email/template-components/template-document-invite.tsx
 msgid "{inviterName} has invited you to {0}<0/>\"{documentName}\""
-msgstr "{inviterName} hat dich eingeladen, {0}<0/>\"{documentName}\""
+msgstr "{inviterName} hat dich zu folgender Aktion eingeladen: {0}<0/>\"{documentName}\""
+
+#: packages/email/template-components/template-document-invite.tsx
+msgid "{inviterName} has invited you to sign<0/>\"{documentName}\""
+msgstr "{inviterName} hat dich eingeladen, das Dokument<0/>\"{documentName}\" zu unterschreiben"
 
 #: packages/email/templates/document-invite.tsx
 msgid "{inviterName} has invited you to {action} {documentName}"
-msgstr "{inviterName} hat dich eingeladen, {action} {documentName}"
+msgstr "{inviterName} hat dich zu folgender Aktion für {documentName} eingeladen: {action}"
+
+#: packages/email/templates/document-invite.tsx
+msgid "{inviterName} has invited you to sign {documentName}"
+msgstr "{inviterName} hat dich eingeladen, {documentName} zu unterschreiben"
 
 #: packages/email/templates/document-invite.tsx
 msgid "{inviterName} has invited you to {action} the document \"{documentName}\"."
-msgstr "{inviterName} hat Sie eingeladen, das Dokument \"{documentName}\" {action}."
+msgstr "{inviterName} hat Sie zu folgender Aktion für das Dokument \"{documentName}\" eingeladen: {action}."
 
 #: packages/email/templates/recipient-removed-from-document.tsx
 msgid "{inviterName} has removed you from the document {documentName}."
@@ -369,16 +395,30 @@ msgstr "{inviterName} hat dich aus dem Dokument<0/>\"{documentName}\" entfernt"
 #. placeholder {1}: envelope.title
 #: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
 msgid "{inviterName} on behalf of \"{0}\" has invited you to {recipientActionVerb} the document \"{1}\"."
-msgstr "{inviterName} im Auftrag von \"{0}\" hat Sie eingeladen, das Dokument \"{1}\" {recipientActionVerb}."
+msgstr "{inviterName} im Auftrag von \"{0}\" hat Sie zu folgender Aktion für das Dokument \"{1}\" eingeladen: {recipientActionVerb}."
+
+#. placeholder {0}: team.name
+#. placeholder {1}: envelope.title
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "{inviterName} on behalf of \"{0}\" has invited you to sign the document \"{1}\"."
+msgstr "{inviterName} im Auftrag von \"{0}\" hat Sie eingeladen, das Dokument \"{1}\" zu unterschreiben."
 
 #. placeholder {0}: _(actionVerb).toLowerCase()
 #: packages/email/template-components/template-document-invite.tsx
 msgid "{inviterName} on behalf of \"{teamName}\" has invited you to {0}<0/>\"{documentName}\""
-msgstr "{inviterName} im Namen von \"{teamName}\" hat dich eingeladen, {0}<0/>\"{documentName}\""
+msgstr "{inviterName} im Namen von \"{teamName}\" hat dich zu folgender Aktion eingeladen: {0}<0/>\"{documentName}\""
+
+#: packages/email/template-components/template-document-invite.tsx
+msgid "{inviterName} on behalf of \"{teamName}\" has invited you to sign<0/>\"{documentName}\""
+msgstr "{inviterName} im Auftrag von \"{teamName}\" hat dich eingeladen, das Dokument<0/>\"{documentName}\" zu unterschreiben"
 
 #: packages/email/templates/document-invite.tsx
 msgid "{inviterName} on behalf of \"{teamName}\" has invited you to {action} {documentName}"
-msgstr "{inviterName} im Namen von \"{teamName}\" hat Sie eingeladen, das Dokument {documentName} {action}"
+msgstr "{inviterName} im Namen von \"{teamName}\" hat Sie zu folgender Aktion für das Dokument \"{documentName}\" eingeladen: {action}"
+
+#: packages/email/templates/document-invite.tsx
+msgid "{inviterName} on behalf of \"{teamName}\" has invited you to sign {documentName}"
+msgstr "{inviterName} im Auftrag von \"{teamName}\" hat Sie eingeladen, das Dokument \"{documentName}\" zu unterschreiben"
 
 #: apps/remix/app/components/dialogs/passkey-create-dialog.tsx
 msgid "{MAXIMUM_PASSKEYS, plural, one {You cannot have more than # passkey.} other {You cannot have more than # passkeys.}}"
@@ -397,7 +437,7 @@ msgstr "{recipientActionVerb} Dokument"
 
 #: apps/remix/app/components/general/direct-template/direct-template-page.tsx
 msgid "{recipientActionVerb} the document to complete the process."
-msgstr "{recipientActionVerb} das Dokument, um den Prozess abzuschließen."
+msgstr "Das Dokument {recipientActionVerb}, um den Prozess abzuschließen."
 
 #: apps/remix/app/components/general/document/document-certificate-qr-view.tsx
 #: apps/remix/app/components/general/document/document-certificate-qr-view.tsx
@@ -445,11 +485,19 @@ msgstr "{signerName} hat das Dokument \"{documentName}\" abgelehnt."
 #. placeholder {0}: _(actionVerb).toLowerCase()
 #: packages/email/template-components/template-document-invite.tsx
 msgid "{teamName} has invited you to {0}<0/>\"{documentName}\""
-msgstr "{teamName} hat dich eingeladen, {0}<0/>\"{documentName}\""
+msgstr "{teamName} hat dich zu folgender Aktion eingeladen: {0}<0/>\"{documentName}\""
+
+#: packages/email/template-components/template-document-invite.tsx
+msgid "{teamName} has invited you to sign<0/>\"{documentName}\""
+msgstr "{teamName} hat dich eingeladen, das Dokument<0/>\"{documentName}\" zu unterschreiben"
 
 #: packages/email/templates/document-invite.tsx
 msgid "{teamName} has invited you to {action} {documentName}"
-msgstr "{teamName} hat Sie eingeladen, {action} {documentName}"
+msgstr "{teamName} hat Sie zu folgender Aktion für {documentName} eingeladen: {action}"
+
+#: packages/email/templates/document-invite.tsx
+msgid "{teamName} has invited you to sign {documentName}"
+msgstr "{teamName} hat Sie eingeladen, {documentName} zu unterschreiben"
 
 #: packages/lib/utils/document-audit-logs.ts
 msgid "{user} added a field"
@@ -903,7 +951,11 @@ msgstr "Ein Gerät, das in der Lage ist, Dokumente zuzugreifen, zu öffnen und z
 
 #: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
 msgid "A document was created by your direct template that requires you to {recipientActionVerb} it."
-msgstr "Ein Dokument wurde von deiner direkten Vorlage erstellt, das erfordert, dass du {recipientActionVerb}."
+msgstr "Über deine direkte Vorlage wurde ein Dokument erstellt, das deine Aktion erfordert: {recipientActionVerb}."
+
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "A document was created by your direct template that requires you to sign it."
+msgstr "Über deine direkte Vorlage wurde ein Dokument erstellt, das du unterschreiben musst."
 
 #: apps/remix/app/components/dialogs/template-use-dialog.tsx
 msgid "A draft document will be created"
@@ -7624,11 +7676,11 @@ msgstr "Platzhalter"
 #. placeholder {0}: _(actionVerb).toLowerCase()
 #: packages/email/template-components/template-document-invite.tsx
 msgid "Please {0} your document<0/>\"{documentName}\""
-msgstr "Bitte {0} dein Dokument<0/>\"{documentName}\""
+msgstr "Bitte dein Dokument<0/>\"{documentName}\" {0}"
 
 #: packages/email/templates/document-invite.tsx
 msgid "Please {action} your document {documentName}"
-msgstr "Bitte {action} dein Dokument {documentName}"
+msgstr "Bitte dein Dokument {documentName} {action}"
 
 #: packages/email/template-components/template-document-invite.tsx
 msgid "Please sign your document<0/>\"{documentName}\""
@@ -7640,15 +7692,19 @@ msgstr "Bitte unterschreibe dein Dokument {documentName}"
 
 #: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
 msgid "Please {recipientActionVerb} this document"
-msgstr "Bitte {recipientActionVerb} dieses Dokument"
+msgstr "Bitte dieses Dokument {recipientActionVerb}"
 
 #: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
 msgid "Please {recipientActionVerb} this document created by your direct template"
-msgstr "Bitte {recipientActionVerb} dieses Dokument, das von deiner direkten Vorlage erstellt wurde"
+msgstr "Bitte dieses Dokument aus deiner direkten Vorlage {recipientActionVerb}"
+
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "Please sign this document created by your direct template"
+msgstr "Bitte unterschreibe dieses Dokument aus deiner direkten Vorlage"
 
 #: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
 msgid "Please {recipientActionVerb} your document"
-msgstr "Bitte {recipientActionVerb} dein Dokument"
+msgstr "Bitte dein Dokument {recipientActionVerb}"
 
 #: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
 msgid "Please sign your document"
@@ -8304,7 +8360,7 @@ msgstr "Haben Sie Ihr Passwort vergessen? <0>Einloggen</0>"
 
 #: packages/email/templates/document-reminder.tsx
 msgid "Reminder to {action} {documentName}"
-msgstr "Erinnerung, {documentName} zu {action}"
+msgstr "Erinnerung: Aktion für {documentName} erforderlich: {action}"
 
 #. placeholder {0}: envelope.documentMeta.subject
 #: packages/lib/jobs/definitions/internal/process-signing-reminder.handler.ts
@@ -8316,25 +8372,36 @@ msgstr "Erinnerung: {0}"
 #: packages/lib/jobs/definitions/internal/process-signing-reminder.handler.ts
 #: packages/lib/server-only/document/resend-document.ts
 msgid "Reminder: {0} invited you to {recipientActionVerb} a document"
-msgstr "Erinnerung: {0} hat dich eingeladen, ein Dokument {recipientActionVerb}"
+msgstr "Erinnerung: {0} hat dich zu folgender Aktion für ein Dokument eingeladen: {recipientActionVerb}"
+
+#. placeholder {0}: envelope.team.name
+#: packages/lib/jobs/definitions/internal/process-signing-reminder.handler.ts
+#: packages/lib/server-only/document/resend-document.ts
+msgid "Reminder: {0} invited you to sign a document"
+msgstr "Erinnerung: {0} hat dich eingeladen, ein Dokument zu unterschreiben"
 
 #. placeholder {0}: _(actionVerb).toLowerCase()
 #: packages/email/template-components/template-document-reminder.tsx
 msgid "Reminder: Please {0} your document<0/>\"{documentName}\""
-msgstr "Erinnerung: Bitte {0} dein Dokument<0/>\"{documentName}\""
+msgstr "Erinnerung: Bitte dein Dokument<0/>\"{documentName}\" {0}"
 
 #. placeholder {0}: envelope.title
 #: packages/lib/jobs/definitions/internal/process-signing-reminder.handler.ts
 msgid "Reminder: Please {recipientActionVerb} the document \"{0}\""
-msgstr "Erinnerung: Bitte {recipientActionVerb} das Dokument \"{0}\""
+msgstr "Erinnerung: Bitte das Dokument \"{0}\" {recipientActionVerb}"
+
+#. placeholder {0}: envelope.title
+#: packages/lib/jobs/definitions/internal/process-signing-reminder.handler.ts
+msgid "Reminder: Please sign the document \"{0}\""
+msgstr "Erinnerung: Bitte unterschreibe das Dokument \"{0}\""
 
 #: packages/lib/server-only/document/resend-document.ts
 msgid "Reminder: Please {recipientActionVerb} this document"
-msgstr "Erinnerung: Bitte {recipientActionVerb} dieses Dokument"
+msgstr "Erinnerung: Bitte dieses Dokument {recipientActionVerb}"
 
 #: packages/lib/server-only/document/resend-document.ts
 msgid "Reminder: Please {recipientActionVerb} your document"
-msgstr "Erinnerung: Bitte {recipientActionVerb} dein Dokument"
+msgstr "Erinnerung: Bitte dein Dokument {recipientActionVerb}"
 
 #: packages/lib/server-only/document/resend-document.ts
 msgid "Reminder: Please sign your document"
@@ -12948,7 +13015,13 @@ msgstr "Sie haben die Einladung von <0>{0}</0> abgelehnt, deren Organisation bei
 #: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
 #: packages/lib/server-only/document/resend-document.ts
 msgid "You have initiated the document {0} that requires you to {recipientActionVerb} it."
-msgstr "Du hast das Dokument {0} initiiert, das erfordert, dass du {recipientActionVerb}."
+msgstr "Du hast das Dokument {0} initiiert; dafür ist noch deine Aktion erforderlich: {recipientActionVerb}."
+
+#. placeholder {0}: `"${envelope.title}"`
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+#: packages/lib/server-only/document/resend-document.ts
+msgid "You have initiated the document {0} that requires you to sign it."
+msgstr "Du hast das Dokument {0} initiiert, das du unterschreiben musst."
 
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.webhooks._index.tsx
 msgid "You have no webhooks yet. Your webhooks will be shown here once you create them."

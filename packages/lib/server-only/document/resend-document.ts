@@ -166,7 +166,9 @@ export const resendDocument = async ({
 
       if (selfSigner) {
         emailMessage = i18n._(
-          msg`You have initiated the document ${`"${envelope.title}"`} that requires you to ${recipientActionVerb} it.`,
+          recipient.role === RecipientRole.SIGNER
+            ? msg`You have initiated the document ${`"${envelope.title}"`} that requires you to sign it.`
+            : msg`You have initiated the document ${`"${envelope.title}"`} that requires you to ${recipientActionVerb} it.`,
         );
         emailSubject =
           recipient.role === RecipientRole.SIGNER
@@ -175,13 +177,18 @@ export const resendDocument = async ({
       }
 
       if (organisationType === OrganisationType.ORGANISATION) {
-        emailSubject = i18n._(
-          msg`Reminder: ${envelope.team.name} invited you to ${recipientActionVerb} a document`,
-        );
+        emailSubject =
+          recipient.role === RecipientRole.SIGNER
+            ? i18n._(msg`Reminder: ${envelope.team.name} invited you to sign a document`)
+            : i18n._(
+                msg`Reminder: ${envelope.team.name} invited you to ${recipientActionVerb} a document`,
+              );
         emailMessage =
           envelope.documentMeta.message ||
           i18n._(
-            msg`${user.name || user.email} on behalf of "${envelope.team.name}" has invited you to ${recipientActionVerb} the document "${envelope.title}".`,
+            recipient.role === RecipientRole.SIGNER
+              ? msg`${user.name || user.email} on behalf of "${envelope.team.name}" has invited you to sign the document "${envelope.title}".`
+              : msg`${user.name || user.email} on behalf of "${envelope.team.name}" has invited you to ${recipientActionVerb} the document "${envelope.title}".`,
           );
       }
 

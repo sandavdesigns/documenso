@@ -127,14 +127,18 @@ export const run = async ({
     ._(RECIPIENT_ROLES_DESCRIPTION[recipient.role].actionVerb)
     .toLowerCase();
 
-  let emailSubject = i18n._(
-    msg`Reminder: Please ${recipientActionVerb} the document "${envelope.title}"`,
-  );
+  let emailSubject =
+    recipient.role === RecipientRole.SIGNER
+      ? i18n._(msg`Reminder: Please sign the document "${envelope.title}"`)
+      : i18n._(msg`Reminder: Please ${recipientActionVerb} the document "${envelope.title}"`);
 
   if (organisationType === OrganisationType.ORGANISATION) {
-    emailSubject = i18n._(
-      msg`Reminder: ${envelope.team.name} invited you to ${recipientActionVerb} a document`,
-    );
+    emailSubject =
+      recipient.role === RecipientRole.SIGNER
+        ? i18n._(msg`Reminder: ${envelope.team.name} invited you to sign a document`)
+        : i18n._(
+            msg`Reminder: ${envelope.team.name} invited you to ${recipientActionVerb} a document`,
+          );
   }
 
   const customEmailTemplate = {

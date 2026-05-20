@@ -40,12 +40,20 @@ export const DocumentInviteEmailTemplate = ({
 
   const action = _(RECIPIENT_ROLES_DESCRIPTION[role].actionVerb).toLowerCase();
 
-  let previewText = msg`${inviterName} has invited you to ${action} ${documentName}`;
+  let previewText =
+    role === RecipientRole.SIGNER
+      ? msg`${inviterName} has invited you to sign ${documentName}`
+      : msg`${inviterName} has invited you to ${action} ${documentName}`;
 
   if (organisationType === OrganisationType.ORGANISATION) {
-    previewText = includeSenderDetails
-      ? msg`${inviterName} on behalf of "${teamName}" has invited you to ${action} ${documentName}`
-      : msg`${teamName} has invited you to ${action} ${documentName}`;
+    previewText =
+      role === RecipientRole.SIGNER
+        ? includeSenderDetails
+          ? msg`${inviterName} on behalf of "${teamName}" has invited you to sign ${documentName}`
+          : msg`${teamName} has invited you to sign ${documentName}`
+        : includeSenderDetails
+          ? msg`${inviterName} on behalf of "${teamName}" has invited you to ${action} ${documentName}`
+          : msg`${teamName} has invited you to ${action} ${documentName}`;
   }
 
   if (selfSigner) {

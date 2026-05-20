@@ -57,6 +57,39 @@ export const TemplateDocumentInvite = ({
             ))
             .with(
               {
+                role: RecipientRole.SIGNER,
+                organisationType: OrganisationType.ORGANISATION,
+                includeSenderDetails: true,
+                teamName: P.string,
+              },
+              () => (
+                <Trans>
+                  {inviterName} on behalf of "{teamName}" has invited you to sign
+                  <br />"{documentName}"
+                </Trans>
+              ),
+            )
+            .with(
+              {
+                role: RecipientRole.SIGNER,
+                organisationType: OrganisationType.ORGANISATION,
+                teamName: P.string,
+              },
+              () => (
+                <Trans>
+                  {teamName} has invited you to sign
+                  <br />"{documentName}"
+                </Trans>
+              ),
+            )
+            .with({ role: RecipientRole.SIGNER }, () => (
+              <Trans>
+                {inviterName} has invited you to sign
+                <br />"{documentName}"
+              </Trans>
+            ))
+            .with(
+              {
                 organisationType: OrganisationType.ORGANISATION,
                 includeSenderDetails: true,
                 teamName: P.string,

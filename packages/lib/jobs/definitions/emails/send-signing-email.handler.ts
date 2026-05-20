@@ -123,7 +123,9 @@ export const run = async ({
 
   if (selfSigner) {
     emailMessage = i18n._(
-      msg`You have initiated the document ${`"${envelope.title}"`} that requires you to ${recipientActionVerb} it.`,
+      recipient.role === RecipientRole.SIGNER
+        ? msg`You have initiated the document ${`"${envelope.title}"`} that requires you to sign it.`
+        : msg`You have initiated the document ${`"${envelope.title}"`} that requires you to ${recipientActionVerb} it.`,
     );
     emailSubject =
       recipient.role === RecipientRole.SIGNER
@@ -133,24 +135,34 @@ export const run = async ({
 
   if (isDirectTemplate) {
     emailMessage = i18n._(
-      msg`A document was created by your direct template that requires you to ${recipientActionVerb} it.`,
+      recipient.role === RecipientRole.SIGNER
+        ? msg`A document was created by your direct template that requires you to sign it.`
+        : msg`A document was created by your direct template that requires you to ${recipientActionVerb} it.`,
     );
-    emailSubject = i18n._(
-      msg`Please ${recipientActionVerb} this document created by your direct template`,
-    );
+    emailSubject =
+      recipient.role === RecipientRole.SIGNER
+        ? i18n._(msg`Please sign this document created by your direct template`)
+        : i18n._(msg`Please ${recipientActionVerb} this document created by your direct template`);
   }
 
   if (organisationType === OrganisationType.ORGANISATION) {
-    emailSubject = i18n._(msg`${team.name} invited you to ${recipientActionVerb} a document`);
+    emailSubject =
+      recipient.role === RecipientRole.SIGNER
+        ? i18n._(msg`${team.name} invited you to sign a document`)
+        : i18n._(msg`${team.name} invited you to ${recipientActionVerb} a document`);
     emailMessage = customEmail?.message ?? '';
 
     if (!emailMessage) {
       const inviterName = user.name || '';
 
       emailMessage = i18n._(
-        settings.includeSenderDetails
-          ? msg`${inviterName} on behalf of "${team.name}" has invited you to ${recipientActionVerb} the document "${envelope.title}".`
-          : msg`${team.name} has invited you to ${recipientActionVerb} the document "${envelope.title}".`,
+        recipient.role === RecipientRole.SIGNER
+          ? settings.includeSenderDetails
+            ? msg`${inviterName} on behalf of "${team.name}" has invited you to sign the document "${envelope.title}".`
+            : msg`${team.name} has invited you to sign the document "${envelope.title}".`
+          : settings.includeSenderDetails
+            ? msg`${inviterName} on behalf of "${team.name}" has invited you to ${recipientActionVerb} the document "${envelope.title}".`
+            : msg`${team.name} has invited you to ${recipientActionVerb} the document "${envelope.title}".`,
       );
     }
   }
