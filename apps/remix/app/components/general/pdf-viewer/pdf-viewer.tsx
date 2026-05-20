@@ -382,6 +382,8 @@ const usePdfPageImage = ({
   pageNumber,
   pdf,
   scale,
+  unscaledWidth,
+  unscaledHeight,
   scaledWidth,
   scaledHeight,
 }: PdfViewerPageProps) => {
@@ -513,9 +515,11 @@ const usePdfPageImage = ({
       onError: () => setImageLoadingState('error'),
       src: imageUrl,
       'data-page-number': pageNumber,
+      'data-pdf-page-width': unscaledWidth,
+      'data-pdf-page-height': unscaledHeight,
       draggable: false,
     }),
-    [scaledWidth, scaledHeight, imageUrl, pageNumber],
+    [scaledWidth, scaledHeight, imageUrl, pageNumber, unscaledWidth, unscaledHeight],
   );
 
   return {
