@@ -125,7 +125,10 @@ export const run = async ({
     emailMessage = i18n._(
       msg`You have initiated the document ${`"${envelope.title}"`} that requires you to ${recipientActionVerb} it.`,
     );
-    emailSubject = i18n._(msg`Please ${recipientActionVerb} your document`);
+    emailSubject =
+      recipient.role === RecipientRole.SIGNER
+        ? i18n._(msg`Please sign your document`)
+        : i18n._(msg`Please ${recipientActionVerb} your document`);
   }
 
   if (isDirectTemplate) {

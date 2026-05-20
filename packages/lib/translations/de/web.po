@@ -7642,6 +7642,10 @@ msgstr "Bitte {recipientActionVerb} dieses Dokument, das von deiner direkten Vor
 msgid "Please {recipientActionVerb} your document"
 msgstr "Bitte {recipientActionVerb} dein Dokument"
 
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "Please sign your document"
+msgstr "Bitte unterschreibe dein Dokument"
+
 #: apps/remix/app/components/dialogs/organisation-member-invite-dialog.tsx
 msgid "Please check the CSV file and make sure it is according to our format"
 msgstr "Bitte prüfen Sie die CSV-Datei und stellen Sie sicher, dass sie unserem Format entspricht"
@@ -8323,6 +8327,10 @@ msgstr "Erinnerung: Bitte {recipientActionVerb} dieses Dokument"
 #: packages/lib/server-only/document/resend-document.ts
 msgid "Reminder: Please {recipientActionVerb} your document"
 msgstr "Erinnerung: Bitte {recipientActionVerb} dein Dokument"
+
+#: packages/lib/server-only/document/resend-document.ts
+msgid "Reminder: Please sign your document"
+msgstr "Erinnerung: Bitte unterschreibe dein Dokument"
 
 #: apps/remix/app/components/general/envelope-editor/envelope-editor-settings-dialog.tsx
 msgid "Reminders"
@@ -13636,4 +13644,3 @@ msgstr "Ihr Verifizierungscode:"
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
 msgid "your-domain.com another-domain.com"
 msgstr "your-domain.com another-domain.com"
-
