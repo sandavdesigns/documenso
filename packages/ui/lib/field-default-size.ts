@@ -39,10 +39,10 @@ export const getDefaultFieldSize = (fieldType: FieldType | null | undefined) => 
 
 export const getDefaultFieldSizeForPage = (
   fieldType: FieldType | null | undefined,
-  page: HTMLElement | null | undefined,
+  page: Element | null | undefined,
 ) => {
   const size = getDefaultFieldSize(fieldType);
-  const pdfPageWidth = Number(page?.dataset.pdfPageWidth);
+  const pdfPageWidth = Number(page?.getAttribute('data-pdf-page-width'));
   const renderedPageWidth = page?.getBoundingClientRect().width;
 
   if (!Number.isFinite(pdfPageWidth) || pdfPageWidth <= 0 || !renderedPageWidth) {
