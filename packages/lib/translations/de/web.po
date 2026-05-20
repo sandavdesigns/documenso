@@ -7630,6 +7630,14 @@ msgstr "Bitte {0} dein Dokument<0/>\"{documentName}\""
 msgid "Please {action} your document {documentName}"
 msgstr "Bitte {action} dein Dokument {documentName}"
 
+#: packages/email/template-components/template-document-invite.tsx
+msgid "Please sign your document<0/>\"{documentName}\""
+msgstr "Bitte unterschreibe dein Dokument<0/>\"{documentName}\""
+
+#: packages/email/templates/document-invite.tsx
+msgid "Please sign your document {documentName}"
+msgstr "Bitte unterschreibe dein Dokument {documentName}"
+
 #: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
 msgid "Please {recipientActionVerb} this document"
 msgstr "Bitte {recipientActionVerb} dieses Dokument"

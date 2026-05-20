@@ -1,8 +1,7 @@
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { Trans } from '@lingui/react/macro';
-import type { RecipientRole } from '@prisma/client';
-import { OrganisationType } from '@prisma/client';
+import { OrganisationType, RecipientRole } from '@prisma/client';
 
 import { RECIPIENT_ROLES_DESCRIPTION } from '@documenso/lib/constants/recipient-roles';
 
@@ -50,7 +49,10 @@ export const DocumentInviteEmailTemplate = ({
   }
 
   if (selfSigner) {
-    previewText = msg`Please ${action} your document ${documentName}`;
+    previewText =
+      role === RecipientRole.SIGNER
+        ? msg`Please sign your document ${documentName}`
+        : msg`Please ${action} your document ${documentName}`;
   }
 
   const getAssetUrl = (path: string) => {

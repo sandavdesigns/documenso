@@ -42,7 +42,13 @@ export const TemplateDocumentInvite = ({
 
       <Section>
         <Text className="text-primary mx-auto mb-0 max-w-[80%] text-center text-lg font-semibold">
-          {match({ selfSigner, organisationType, includeSenderDetails, teamName })
+          {match({ selfSigner, role, organisationType, includeSenderDetails, teamName })
+            .with({ selfSigner: true, role: RecipientRole.SIGNER }, () => (
+              <Trans>
+                Please sign your document
+                <br />"{documentName}"
+              </Trans>
+            ))
             .with({ selfSigner: true }, () => (
               <Trans>
                 Please {_(actionVerb).toLowerCase()} your document
