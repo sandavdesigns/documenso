@@ -58,7 +58,7 @@ import {
   DEFAULT_FIELD_WIDTH_PX,
   MIN_FIELD_HEIGHT_PX,
   MIN_FIELD_WIDTH_PX,
-  getDefaultFieldSize,
+  getDefaultFieldSizeForPage,
 } from '@documenso/ui/lib/field-default-size';
 import type { DocumentFlowStep } from '@documenso/ui/primitives/document-flow/types';
 import { FRIENDLY_FIELD_TYPE } from '@documenso/ui/primitives/document-flow/types';
@@ -314,11 +314,17 @@ export const AddTemplateFieldsFormPartial = ({
   });
 
   useEffect(() => {
-    fieldBounds.current = getDefaultFieldSize(selectedField);
+    const $page = document.querySelector<HTMLElement>(PDF_VIEWER_PAGE_SELECTOR);
+
+    fieldBounds.current = getDefaultFieldSizeForPage(selectedField, $page);
   }, [selectedField]);
 
   const onMouseMove = useCallback(
     (event: MouseEvent) => {
+      const $page = getPage(event, PDF_VIEWER_PAGE_SELECTOR);
+
+      fieldBounds.current = getDefaultFieldSizeForPage(selectedField, $page);
+
       setIsFieldWithinBounds(
         isWithinPageBounds(
           event,
@@ -333,7 +339,7 @@ export const AddTemplateFieldsFormPartial = ({
         y: event.clientY - fieldBounds.current.height / 2,
       });
     },
-    [isWithinPageBounds],
+    [getPage, isWithinPageBounds, selectedField],
   );
 
   const onMouseClick = useCallback(
@@ -343,6 +349,8 @@ export const AddTemplateFieldsFormPartial = ({
       }
 
       const $page = getPage(event, PDF_VIEWER_PAGE_SELECTOR);
+
+      fieldBounds.current = getDefaultFieldSizeForPage(selectedField, $page);
 
       if (
         !$page ||
@@ -476,9 +484,7 @@ export const AddTemplateFieldsFormPartial = ({
         return;
       }
 
-      fieldBounds.current = {
-        ...getDefaultFieldSize(selectedField),
-      };
+      fieldBounds.current = getDefaultFieldSizeForPage(selectedField, $page);
     });
 
     observer.observe(document.body, {

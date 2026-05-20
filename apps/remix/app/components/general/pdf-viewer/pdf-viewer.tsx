@@ -352,6 +352,8 @@ const PdfViewerPage = ({
 
   return (
     <div
+      data-pdf-page-height={unscaledHeight}
+      data-pdf-page-width={unscaledWidth}
       className="relative w-full rounded border border-border"
       style={{ width: scaledWidth, height: scaledHeight }}
     >

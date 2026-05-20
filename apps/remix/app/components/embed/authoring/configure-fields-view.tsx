@@ -22,7 +22,7 @@ import {
   DEFAULT_FIELD_WIDTH_PX,
   MIN_FIELD_HEIGHT_PX,
   MIN_FIELD_WIDTH_PX,
-  getDefaultFieldSize,
+  getDefaultFieldSizeForPage,
 } from '@documenso/ui/lib/field-default-size';
 import { getRecipientColorStyles } from '@documenso/ui/lib/recipient-colors';
 import { cn } from '@documenso/ui/lib/utils';
@@ -157,7 +157,9 @@ export const ConfigureFieldsView = ({
   });
 
   useEffect(() => {
-    fieldBounds.current = getDefaultFieldSize(selectedField);
+    const $page = document.querySelector<HTMLElement>(PDF_VIEWER_PAGE_SELECTOR);
+
+    fieldBounds.current = getDefaultFieldSizeForPage(selectedField, $page);
   }, [selectedField]);
 
   const selectedRecipientIndex = recipients.findIndex((r) => r.id === selectedRecipient?.id);
@@ -273,6 +275,10 @@ export const ConfigureFieldsView = ({
     (event: MouseEvent) => {
       if (!selectedField) return;
 
+      const $page = getPage(event, PDF_VIEWER_PAGE_SELECTOR);
+
+      fieldBounds.current = getDefaultFieldSizeForPage(selectedField, $page);
+
       setIsFieldWithinBounds(
         isWithinPageBounds(
           event,
@@ -287,7 +293,7 @@ export const ConfigureFieldsView = ({
         y: event.clientY - fieldBounds.current.height / 2,
       });
     },
-    [isWithinPageBounds, selectedField],
+    [getPage, isWithinPageBounds, selectedField],
   );
 
   const onMouseClick = useCallback(
@@ -297,6 +303,8 @@ export const ConfigureFieldsView = ({
       }
 
       const $page = getPage(event, PDF_VIEWER_PAGE_SELECTOR);
+
+      fieldBounds.current = getDefaultFieldSizeForPage(selectedField, $page);
 
       if (
         !$page ||
@@ -441,9 +449,7 @@ export const ConfigureFieldsView = ({
         return;
       }
 
-      fieldBounds.current = {
-        ...getDefaultFieldSize(selectedField),
-      };
+      fieldBounds.current = getDefaultFieldSizeForPage(selectedField, $page);
     });
 
     observer.observe(document.body, {

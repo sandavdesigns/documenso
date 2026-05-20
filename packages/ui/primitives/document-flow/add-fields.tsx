@@ -45,7 +45,7 @@ import {
   DEFAULT_FIELD_WIDTH_PX,
   MIN_FIELD_HEIGHT_PX,
   MIN_FIELD_WIDTH_PX,
-  getDefaultFieldSize,
+  getDefaultFieldSizeForPage,
 } from '../../lib/field-default-size';
 import { getRecipientColorStyles } from '../../lib/recipient-colors';
 import { cn } from '../../lib/utils';
@@ -270,11 +270,17 @@ export const AddFieldsFormPartial = ({
   });
 
   useEffect(() => {
-    fieldBounds.current = getDefaultFieldSize(selectedField);
+    const $page = document.querySelector<HTMLElement>(PDF_VIEWER_PAGE_SELECTOR);
+
+    fieldBounds.current = getDefaultFieldSizeForPage(selectedField, $page);
   }, [selectedField]);
 
   const onMouseMove = useCallback(
     (event: MouseEvent) => {
+      const $page = getPage(event, PDF_VIEWER_PAGE_SELECTOR);
+
+      fieldBounds.current = getDefaultFieldSizeForPage(selectedField, $page);
+
       setIsFieldWithinBounds(
         isWithinPageBounds(
           event,
@@ -289,7 +295,7 @@ export const AddFieldsFormPartial = ({
         y: event.clientY - fieldBounds.current.height / 2,
       });
     },
-    [isWithinPageBounds],
+    [getPage, isWithinPageBounds, selectedField],
   );
 
   const onMouseClick = useCallback(
@@ -299,6 +305,8 @@ export const AddFieldsFormPartial = ({
       }
 
       const $page = getPage(event, PDF_VIEWER_PAGE_SELECTOR);
+
+      fieldBounds.current = getDefaultFieldSizeForPage(selectedField, $page);
 
       if (
         !$page ||
@@ -513,9 +521,7 @@ export const AddFieldsFormPartial = ({
         return;
       }
 
-      fieldBounds.current = {
-        ...getDefaultFieldSize(selectedField),
-      };
+      fieldBounds.current = getDefaultFieldSizeForPage(selectedField, $page);
     });
 
     observer.observe(document.body, {

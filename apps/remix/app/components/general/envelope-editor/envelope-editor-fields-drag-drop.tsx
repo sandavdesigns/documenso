@@ -26,7 +26,7 @@ import { SignatureIcon } from '@documenso/ui/icons/signature';
 import {
   DEFAULT_FIELD_HEIGHT_PX,
   DEFAULT_FIELD_WIDTH_PX,
-  getDefaultFieldSize,
+  getDefaultFieldSizeForPage,
 } from '@documenso/ui/lib/field-default-size';
 import { getRecipientColorStyles } from '@documenso/ui/lib/recipient-colors';
 import { cn } from '@documenso/ui/lib/utils';
@@ -133,11 +133,17 @@ export const EnvelopeEditorFieldDragDrop = ({
   });
 
   useEffect(() => {
-    fieldBounds.current = getDefaultFieldSize(selectedField);
+    const $page = document.querySelector<HTMLElement>(PDF_VIEWER_PAGE_SELECTOR);
+
+    fieldBounds.current = getDefaultFieldSizeForPage(selectedField, $page);
   }, [selectedField]);
 
   const onMouseMove = useCallback(
     (event: MouseEvent) => {
+      const $page = getPage(event, PDF_VIEWER_PAGE_SELECTOR);
+
+      fieldBounds.current = getDefaultFieldSizeForPage(selectedField, $page);
+
       setIsFieldWithinBounds(
         isWithinPageBounds(
           event,
@@ -152,7 +158,7 @@ export const EnvelopeEditorFieldDragDrop = ({
         y: event.clientY - fieldBounds.current.height / 2,
       });
     },
-    [isWithinPageBounds],
+    [getPage, isWithinPageBounds, selectedField],
   );
 
   const onMouseClick = useCallback(
@@ -162,6 +168,8 @@ export const EnvelopeEditorFieldDragDrop = ({
       }
 
       const $page = getPage(event, PDF_VIEWER_PAGE_SELECTOR);
+
+      fieldBounds.current = getDefaultFieldSizeForPage(selectedField, $page);
 
       if (
         !$page ||
@@ -228,9 +236,7 @@ export const EnvelopeEditorFieldDragDrop = ({
         return;
       }
 
-      fieldBounds.current = {
-        ...getDefaultFieldSize(selectedField),
-      };
+      fieldBounds.current = getDefaultFieldSizeForPage(selectedField, $page);
     });
 
     observer.observe(document.body, {
