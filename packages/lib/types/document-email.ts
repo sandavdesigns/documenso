@@ -33,17 +33,17 @@ export const ZDocumentEmailSettingsSchema = z
       .describe(
         'Whether to send an email to the document owner when a recipient has signed the document.',
       )
-      .default(true),
+      .default(false),
     documentPending: z
       .boolean()
       .describe(
         'Whether to send an email to the recipient who has just signed the document indicating that there are still other recipients who need to sign the document. This will only be sent if the document is still pending after the recipient has signed.',
       )
-      .default(true),
+      .default(false),
     documentCompleted: z
       .boolean()
       .describe('Whether to send an email to all recipients when the document is complete.')
-      .default(true),
+      .default(false),
     documentDeleted: z
       .boolean()
       .describe(
@@ -100,9 +100,9 @@ export const extractDerivedDocumentEmailSettings = (
 export const DEFAULT_DOCUMENT_EMAIL_SETTINGS: TDocumentEmailSettings = {
   recipientSigningRequest: true,
   recipientRemoved: true,
-  recipientSigned: true,
-  documentPending: true,
-  documentCompleted: true,
+  recipientSigned: false,
+  documentPending: false,
+  documentCompleted: false,
   documentDeleted: true,
   ownerDocumentCompleted: true,
   ownerRecipientExpired: true,

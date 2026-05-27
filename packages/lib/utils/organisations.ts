@@ -116,18 +116,18 @@ export const generateDefaultOrganisationSettings = (): Omit<
 > => {
   return {
     documentVisibility: DocumentVisibility.EVERYONE,
-    documentLanguage: 'en',
+    documentLanguage: 'de',
     documentTimezone: null, // Null means local timezone.
     documentDateFormat: DEFAULT_DOCUMENT_DATE_FORMAT,
     delegateDocumentOwnership: false,
 
     includeSenderDetails: true,
     includeSigningCertificate: true,
-    includeAuditLog: false,
+    includeAuditLog: true,
 
-    typedSignatureEnabled: true,
+    typedSignatureEnabled: false,
     uploadSignatureEnabled: true,
-    drawSignatureEnabled: true,
+    drawSignatureEnabled: false,
 
     brandingEnabled: false,
     brandingLogo: '',
@@ -135,7 +135,7 @@ export const generateDefaultOrganisationSettings = (): Omit<
     brandingCompanyDetails: '',
 
     emailId: null,
-    emailReplyTo: null,
+    emailReplyTo: 'noreply@example.com',
     // emailReplyToName: null,
     emailDocumentSettings: DEFAULT_DOCUMENT_EMAIL_SETTINGS,
 

@@ -513,16 +513,16 @@ model DocumentMeta {
   subject                String?
   message                String?
   timezone               String?              @default("Etc/UTC") @db.Text
-  dateFormat             String?              @default("yyyy-MM-dd hh:mm a") @db.Text
+  dateFormat             String?              @default("dd.MM.yyyy") @db.Text
   redirectUrl            String?
   signingOrder           DocumentSigningOrder @default(PARALLEL)
   allowDictateNextSigner Boolean              @default(false)
 
-  typedSignatureEnabled  Boolean @default(true)
+  typedSignatureEnabled  Boolean @default(false)
   uploadSignatureEnabled Boolean @default(true)
-  drawSignatureEnabled   Boolean @default(true)
+  drawSignatureEnabled   Boolean @default(false)
 
-  language           String                     @default("en")
+  language           String                     @default("de")
   distributionMethod DocumentDistributionMethod @default(EMAIL)
 
   emailSettings Json? /// [DocumentEmailSettings] @zod.custom.use(ZDocumentEmailSettingsSchema)
@@ -837,17 +837,17 @@ model OrganisationGlobalSettings {
   organisation Organisation?
 
   documentVisibility        DocumentVisibility @default(EVERYONE)
-  documentLanguage          String             @default("en")
+  documentLanguage          String             @default("de")
   includeSenderDetails      Boolean            @default(true)
   includeSigningCertificate Boolean            @default(true)
-  includeAuditLog           Boolean            @default(false)
+  includeAuditLog           Boolean            @default(true)
   documentTimezone          String? // Nullable to allow using local timezones if not set.
-  documentDateFormat        String             @default("yyyy-MM-dd hh:mm a")
+  documentDateFormat        String             @default("dd.MM.yyyy")
   delegateDocumentOwnership Boolean            @default(false)
 
-  typedSignatureEnabled  Boolean @default(true)
+  typedSignatureEnabled  Boolean @default(false)
   uploadSignatureEnabled Boolean @default(true)
-  drawSignatureEnabled   Boolean @default(true)
+  drawSignatureEnabled   Boolean @default(false)
 
   defaultRecipients Json? /// [DefaultRecipient[]] @zod.custom.use(ZDefaultRecipientsSchema)
 

@@ -30,8 +30,8 @@ const UNIT_TO_LUXON_KEY: Record<
 };
 
 export const DEFAULT_ENVELOPE_EXPIRATION_PERIOD: TEnvelopeExpirationDurationPeriod = {
-  unit: 'month',
-  amount: 3,
+  unit: 'day',
+  amount: 5,
 };
 
 export const getEnvelopeExpirationDuration = (
@@ -43,7 +43,7 @@ export const getEnvelopeExpirationDuration = (
 /**
  * Resolve the concrete expiresAt timestamp from a raw expiration period (from JSON column).
  *
- * - `null` means use the default period (3 months).
+ * - `null` means use the default period.
  * - `{ disabled: true }` means never expires (returns null).
  * - `{ unit, amount }` means compute the timestamp from now + duration.
  */
