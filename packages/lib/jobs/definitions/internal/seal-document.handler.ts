@@ -391,10 +391,11 @@ const getPdfSignatureMetadata = (
 
   const signers = signedRecipients.map(formatRecipientForPdfSignature);
   const signerEmails = signedRecipients.map((recipient) => recipient.email);
+  const lineSeparator = '\u2028';
 
   return {
-    reason: `Signed in Documenso by:\r${signers.join('\r')}`,
-    contactInfo: signerEmails.join('\r'),
+    reason: `Signed in Documenso by:${lineSeparator}${signers.join(lineSeparator)}`,
+    contactInfo: signerEmails.join(lineSeparator),
   };
 };
 
