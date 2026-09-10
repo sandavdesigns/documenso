@@ -125,9 +125,7 @@ export const buildEmbeddedFeatures = (
     recipients:
       features.recipients !== null
         ? {
-            allowAIDetection:
-              features.recipients?.allowAIDetection ??
-              DEFAULT_EMBEDDED_EDITOR_CONFIG.recipients.allowAIDetection,
+            allowAIDetection: false,
             allowConfigureSigningOrder:
               features.recipients?.allowConfigureSigningOrder ??
               DEFAULT_EMBEDDED_EDITOR_CONFIG.recipients.allowConfigureSigningOrder,
@@ -150,8 +148,7 @@ export const buildEmbeddedFeatures = (
         : null,
 
     fields: {
-      allowAIDetection:
-        features.fields?.allowAIDetection ?? DEFAULT_EMBEDDED_EDITOR_CONFIG.fields.allowAIDetection,
+      allowAIDetection: false,
     },
   };
 };
