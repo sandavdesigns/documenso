@@ -1,0 +1,13 @@
+diff --git a/node_modules/@libpdf/core/dist/index.mjs b/node_modules/@libpdf/core/dist/index.mjs
+index 7c3d6d5..0d308de 100644
+--- a/node_modules/@libpdf/core/dist/index.mjs
++++ b/node_modules/@libpdf/core/dist/index.mjs
+@@ -38231,7 +38231,7 @@ const OID_AD_CA_ISSUERS = "1.3.6.1.5.5.7.48.2";
+ * @returns Escaped string safe for PDF literal strings
+ */
+ function escapePdfString(str) {
+-	return str.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)").replace(/\r/g, "\\r").replace(/\n/g, "\\n");
++	return str.replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
+ }
+ /**
+ * Hash data using the specified algorithm.
