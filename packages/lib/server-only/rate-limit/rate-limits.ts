@@ -66,17 +66,43 @@ export const linkOrgAccountRateLimit = createRateLimit({
   window: '1h',
 });
 
+// ---- Auth (Tier 3 - Authenticated, verifies secrets) ----
+
+/**
+ * Bounds guessing of the current password and 2FA code via the update password endpoint.
+ */
+export const updatePasswordRateLimit = createRateLimit({
+  action: 'auth.update-password',
+  max: 5,
+  globalMax: 20,
+  window: '15m',
+});
+
+export const reportSenderRateLimit = createRateLimit({
+  action: 'recipient.report-sender',
+  max: 1,
+  window: '7d',
+});
+
+// ---- Billing ----
+
+export const syncSubscriptionRateLimit = createRateLimit({
+  action: 'billing.sync-subscription',
+  max: 10,
+  window: '15m',
+});
+
 // ---- API (Tier 4 - Standard) ----
 
 export const apiV1RateLimit = createRateLimit({
   action: 'api.v1',
-  max: 100,
+  max: 1000,
   window: '1m',
 });
 
 export const apiV2RateLimit = createRateLimit({
   action: 'api.v2',
-  max: 100,
+  max: 1000,
   window: '1m',
 });
 

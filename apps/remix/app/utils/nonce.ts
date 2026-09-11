@@ -1,3 +1,11 @@
+import { createContext, useRouteLoaderData } from 'react-router';
+
+/**
+ * Per-request CSP nonce. Set by the root route middleware, read with
+ * `context.get(nonceContext)` in loaders/actions and `entry.server`.
+ */
+export const nonceContext = createContext<string>('');
+
 /**
  * Returns the supplied CSP nonce only when rendering on the server.
  *
@@ -18,5 +26,19 @@
  * client has no functional impact. Subsequent dynamically-injected
  * scripts inherit trust via `'strict-dynamic'`.
  */
-export const nonce = (value: string | undefined): string | undefined =>
-  typeof window === 'undefined' ? value : '';
+export const nonce = (value: string | undefined): string | undefined => (typeof window === 'undefined' ? value : '');
+
+/**
+ * Reads the per-request CSP nonce surfaced by the root loader. Use this
+ * inside any non-root route component that needs to render a `<style>`,
+ * `<script>`, or other element that the CSP gates by nonce.
+ *
+ * Centralised here so the cast is in one place — if the root loader's
+ * `nonce` field is ever renamed/removed, only this function needs updating
+ * (and TypeScript will catch it at the cast site).
+ */
+export const useCspNonce = (): string | undefined => {
+  const rootData = useRouteLoaderData('root') as { nonce?: string } | undefined;
+
+  return rootData?.nonce;
+};
