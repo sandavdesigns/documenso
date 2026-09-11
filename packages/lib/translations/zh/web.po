@@ -269,9 +269,20 @@ msgid "{0} has invited you to {recipientActionVerb} the document \"{1}\"."
 msgstr "{0} 已邀请您 {recipientActionVerb} 文档“{1}”。"
 
 #. placeholder {0}: team.name
+#. placeholder {1}: envelope.title
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "{0} has invited you to sign the document \"{1}\"."
+msgstr ""
+
+#. placeholder {0}: team.name
 #: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
 msgid "{0} invited you to {recipientActionVerb} a document"
 msgstr "{0} 邀请您 {recipientActionVerb} 一个文档"
+
+#. placeholder {0}: team.name
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "{0} invited you to sign a document"
+msgstr ""
 
 #. placeholder {0}: remaining.documents
 #. placeholder {1}: quota.documents
@@ -287,6 +298,13 @@ msgstr "本月还剩 {0}/{1} 份文档可用。"
 #: packages/lib/server-only/document/resend-document.ts
 msgid "{0} on behalf of \"{1}\" has invited you to {recipientActionVerb} the document \"{2}\"."
 msgstr "{0} 代表“{1}”邀请您 {recipientActionVerb} 文档“{2}”。"
+
+#. placeholder {0}: user.name || user.email
+#. placeholder {1}: envelope.team.name
+#. placeholder {2}: envelope.title
+#: packages/lib/server-only/document/resend-document.ts
+msgid "{0} on behalf of \"{1}\" has invited you to sign the document \"{2}\"."
+msgstr ""
 
 #. placeholder {0}: organisation.name
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl._index.tsx
@@ -357,6 +375,14 @@ msgstr "{inviterName} 已邀请您 {action} {documentName}"
 msgid "{inviterName} has invited you to {action} the document \"{documentName}\"."
 msgstr "{inviterName} 已邀请您 {action} 文档“{documentName}”。"
 
+#: packages/email/templates/document-invite.tsx
+msgid "{inviterName} has invited you to sign {documentName}"
+msgstr ""
+
+#: packages/email/template-components/template-document-invite.tsx
+msgid "{inviterName} has invited you to sign<0/>\"{documentName}\""
+msgstr ""
+
 #: packages/email/templates/recipient-removed-from-document.tsx
 msgid "{inviterName} has removed you from the document {documentName}."
 msgstr "{inviterName} 已将您从文档 {documentName} 中移除。"
@@ -371,6 +397,12 @@ msgstr "{inviterName} 已将您从文档<0/>“{documentName}”中移除"
 msgid "{inviterName} on behalf of \"{0}\" has invited you to {recipientActionVerb} the document \"{1}\"."
 msgstr "{inviterName} 代表“{0}”邀请您 {recipientActionVerb} 文档“{1}”。"
 
+#. placeholder {0}: team.name
+#. placeholder {1}: envelope.title
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "{inviterName} on behalf of \"{0}\" has invited you to sign the document \"{1}\"."
+msgstr ""
+
 #. placeholder {0}: _(actionVerb).toLowerCase()
 #: packages/email/template-components/template-document-invite.tsx
 msgid "{inviterName} on behalf of \"{teamName}\" has invited you to {0}<0/>\"{documentName}\""
@@ -379,6 +411,14 @@ msgstr "{inviterName} 代表“{teamName}”已邀请您 {0}<0/>“{documentName
 #: packages/email/templates/document-invite.tsx
 msgid "{inviterName} on behalf of \"{teamName}\" has invited you to {action} {documentName}"
 msgstr "{inviterName} 代表“{teamName}”已邀请您 {action} {documentName}"
+
+#: packages/email/templates/document-invite.tsx
+msgid "{inviterName} on behalf of \"{teamName}\" has invited you to sign {documentName}"
+msgstr ""
+
+#: packages/email/template-components/template-document-invite.tsx
+msgid "{inviterName} on behalf of \"{teamName}\" has invited you to sign<0/>\"{documentName}\""
+msgstr ""
 
 #: apps/remix/app/components/dialogs/passkey-create-dialog.tsx
 msgid "{MAXIMUM_PASSKEYS, plural, one {You cannot have more than # passkey.} other {You cannot have more than # passkeys.}}"
@@ -450,6 +490,14 @@ msgstr "{teamName} 已邀请您 {0}<0/>“{documentName}”"
 #: packages/email/templates/document-invite.tsx
 msgid "{teamName} has invited you to {action} {documentName}"
 msgstr "{teamName} 已邀请您 {action} {documentName}"
+
+#: packages/email/templates/document-invite.tsx
+msgid "{teamName} has invited you to sign {documentName}"
+msgstr ""
+
+#: packages/email/template-components/template-document-invite.tsx
+msgid "{teamName} has invited you to sign<0/>\"{documentName}\""
+msgstr ""
 
 #: packages/lib/utils/document-audit-logs.ts
 msgid "{user} added a field"
@@ -904,6 +952,10 @@ msgstr "能够访问、打开和阅读文档的设备"
 #: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
 msgid "A document was created by your direct template that requires you to {recipientActionVerb} it."
 msgstr "已通过您的直链模板创建了一个文档，需要您对其进行 {recipientActionVerb}。"
+
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "A document was created by your direct template that requires you to sign it."
+msgstr ""
 
 #: apps/remix/app/components/dialogs/template-use-dialog.tsx
 msgid "A draft document will be created"
@@ -2987,7 +3039,6 @@ msgstr "字段已复制到剪贴板"
 #: apps/remix/app/routes/_authenticated+/admin+/teams.$id.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-#: packages/ui/components/document/document-share-button.tsx
 #: packages/ui/primitives/document-flow/add-subject.tsx
 msgid "Copied to clipboard"
 msgstr "已复制到剪贴板"
@@ -2996,10 +3047,6 @@ msgstr "已复制到剪贴板"
 #: packages/ui/primitives/document-flow/add-subject.tsx
 msgid "Copy"
 msgstr "复制"
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "Copy Link"
-msgstr "复制链接"
 
 #: apps/remix/app/routes/_authenticated+/admin+/teams.$id.tsx
 msgid "Copy organisation ID"
@@ -4315,6 +4362,7 @@ msgstr "不要转移（删除所有文档）"
 #: apps/remix/app/components/tables/documents-table-action-dropdown.tsx
 #: apps/remix/app/components/tables/inbox-table.tsx
 #: apps/remix/app/components/tables/organisation-billing-invoices-table.tsx
+#: apps/remix/app/components/tables/templates-table-action-dropdown.tsx
 #: apps/remix/app/routes/_recipient+/sign.$token+/complete.tsx
 #: packages/email/template-components/template-document-completed.tsx
 msgid "Download"
@@ -4922,6 +4970,10 @@ msgstr "信封已分发"
 
 #: apps/remix/app/routes/_internal+/[__htmltopdf]+/audit-log.tsx
 #: packages/lib/server-only/pdf/render-audit-logs.ts
+#: packages/lib/server-only/pdf/render-audit-logs.ts
+#: packages/lib/server-only/pdf/render-audit-logs.ts
+#: packages/lib/server-only/pdf/render-certificate.ts
+#: packages/lib/server-only/pdf/render-certificate.ts
 msgid "Envelope ID"
 msgstr "信封 ID"
 
@@ -7694,8 +7746,6 @@ msgstr "请输入一个有意义的令牌名称，以便日后识别。"
 msgid "Please enter a number"
 msgstr "请输入一个数字"
 
-#: apps/remix/app/components/forms/profile.tsx
-#: apps/remix/app/components/forms/signup.tsx
 #: apps/remix/app/components/general/claim-account.tsx
 msgid "Please enter a valid name."
 msgstr "请输入有效姓名。"
@@ -7796,6 +7846,22 @@ msgstr "请至少选择一名成员添加到团队。"
 #: apps/remix/app/components/general/document-signing/access-auth-2fa-form.tsx
 msgid "Please select how you'd like to receive your verification code."
 msgstr "请选择您希望接收验证码的方式。"
+
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "Please sign this document created by your direct template"
+msgstr ""
+
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "Please sign your document"
+msgstr ""
+
+#: packages/email/templates/document-invite.tsx
+msgid "Please sign your document {documentName}"
+msgstr ""
+
+#: packages/email/template-components/template-document-invite.tsx
+msgid "Please sign your document<0/>\"{documentName}\""
+msgstr ""
 
 #: apps/remix/app/components/dialogs/organisation-email-domain-create-dialog.tsx
 msgid "Please try a different domain."
@@ -8306,6 +8372,12 @@ msgstr "提醒：{0}"
 msgid "Reminder: {0} invited you to {recipientActionVerb} a document"
 msgstr "提醒：{0} 邀请您 {recipientActionVerb} 一个文档"
 
+#. placeholder {0}: envelope.team.name
+#: packages/lib/jobs/definitions/internal/process-signing-reminder.handler.ts
+#: packages/lib/server-only/document/resend-document.ts
+msgid "Reminder: {0} invited you to sign a document"
+msgstr ""
+
 #. placeholder {0}: _(actionVerb).toLowerCase()
 #: packages/email/template-components/template-document-reminder.tsx
 msgid "Reminder: Please {0} your document<0/>\"{documentName}\""
@@ -8323,6 +8395,15 @@ msgstr "提醒：请 {recipientActionVerb} 此文档"
 #: packages/lib/server-only/document/resend-document.ts
 msgid "Reminder: Please {recipientActionVerb} your document"
 msgstr "提醒：请 {recipientActionVerb} 您的文档"
+
+#. placeholder {0}: envelope.title
+#: packages/lib/jobs/definitions/internal/process-signing-reminder.handler.ts
+msgid "Reminder: Please sign the document \"{0}\""
+msgstr ""
+
+#: packages/lib/server-only/document/resend-document.ts
+msgid "Reminder: Please sign your document"
+msgstr ""
 
 #: apps/remix/app/components/general/envelope-editor/envelope-editor-settings-dialog.tsx
 msgid "Reminders"
@@ -8562,10 +8643,6 @@ msgstr "响应代码"
 #: apps/remix/app/components/general/webhook-logs-sheet.tsx
 msgid "Response Headers"
 msgstr "响应头"
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "Rest assured, your document is strictly confidential and will never be shared. Only your signing experience will be highlighted. Share your personalized signing card to showcase your signature!"
-msgstr "请放心，您的文档将被严格保密，绝不会被分享。只有您的签署体验会被展示。分享您的个性化签署卡片，展示您的签名！"
 
 #: apps/remix/app/components/general/organisations/organisation-billing-banner.tsx
 msgid "Restricted Access"
@@ -9130,7 +9207,6 @@ msgstr "设置"
 
 #: apps/remix/app/components/general/document/document-page-view-dropdown.tsx
 #: apps/remix/app/components/tables/documents-table-action-dropdown.tsx
-#: packages/ui/components/document/document-share-button.tsx
 msgid "Share"
 msgstr "分享"
 
@@ -9142,10 +9218,6 @@ msgstr "分享签署卡片"
 #: packages/lib/constants/template.ts
 msgid "Share the Link"
 msgstr "分享链接"
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "Share your signing experience!"
-msgstr "分享您的签署体验！"
 
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.public-profile.tsx
 msgid "Show"
@@ -9508,7 +9580,6 @@ msgstr "部分签署人尚未被分配签名字段。请在继续前为每位签
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.public-profile.tsx
 #: apps/remix/app/routes/_unauthenticated+/verify-email.$token.tsx
 #: apps/remix/app/routes/_unauthenticated+/verify-email.$token.tsx
-#: packages/ui/components/document/document-share-button.tsx
 msgid "Something went wrong"
 msgstr "出错了"
 
@@ -10462,14 +10533,6 @@ msgstr "收件人必须查看该文档，文档才算完成。"
 #: apps/remix/app/routes/_authenticated+/admin+/email-domains.$id.tsx
 msgid "The SES identity has been deleted and recreated with the same keys. DNS records remain unchanged."
 msgstr "SES 身份已被删除并使用相同的密钥重新创建。DNS 记录保持不变。"
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "The sharing link could not be created at this time. Please try again."
-msgstr "目前无法创建分享链接。请重试。"
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "The sharing link has been copied to your clipboard."
-msgstr "分享链接已复制到您的剪贴板。"
 
 #: packages/ui/components/document/document-send-email-message-helper.tsx
 msgid "The signer's email"
@@ -11737,10 +11800,6 @@ msgstr "用户资料来了！"
 msgid "User settings"
 msgstr "用户设置"
 
-#: apps/remix/app/components/forms/signup.tsx
-msgid "User with this email already exists. Please use a different email address."
-msgstr "使用该邮箱的用户已存在。请使用其他邮箱地址。"
-
 #: apps/remix/app/components/tables/organisation-insights-table.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/_layout.tsx
 msgid "Users"
@@ -12285,6 +12344,10 @@ msgstr "无法将令牌复制到剪贴板。请重试。"
 #: apps/remix/app/components/forms/2fa/recovery-code-list.tsx
 msgid "We were unable to copy your recovery code to your clipboard. Please try again."
 msgstr "无法将恢复代码复制到剪贴板。请重试。"
+
+#: apps/remix/app/components/forms/signup.tsx
+msgid "We were unable to create your account. If you already have an account, try signing in instead."
+msgstr ""
 
 #: apps/remix/app/components/forms/signup.tsx
 msgid "We were unable to create your account. Please review the information you provided and try again."
@@ -12933,6 +12996,12 @@ msgstr "您已拒绝来自 <0>{0}</0> 的加入其组织的邀请。"
 #: packages/lib/server-only/document/resend-document.ts
 msgid "You have initiated the document {0} that requires you to {recipientActionVerb} it."
 msgstr "您已发起文档 {0}，需要您对其进行 {recipientActionVerb}。"
+
+#. placeholder {0}: `"${envelope.title}"`
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+#: packages/lib/server-only/document/resend-document.ts
+msgid "You have initiated the document {0} that requires you to sign it."
+msgstr ""
 
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.webhooks._index.tsx
 msgid "You have no webhooks yet. Your webhooks will be shown here once you create them."
@@ -13636,4 +13705,3 @@ msgstr "您的验证码："
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
 msgid "your-domain.com another-domain.com"
 msgstr "your-domain.com another-domain.com"
-

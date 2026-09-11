@@ -269,9 +269,20 @@ msgid "{0} has invited you to {recipientActionVerb} the document \"{1}\"."
 msgstr "{0} ti ha invitato a {recipientActionVerb} il documento \"{1}\"."
 
 #. placeholder {0}: team.name
+#. placeholder {1}: envelope.title
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "{0} has invited you to sign the document \"{1}\"."
+msgstr ""
+
+#. placeholder {0}: team.name
 #: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
 msgid "{0} invited you to {recipientActionVerb} a document"
 msgstr "{0} ti ha invitato a {recipientActionVerb} un documento"
+
+#. placeholder {0}: team.name
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "{0} invited you to sign a document"
+msgstr ""
 
 #. placeholder {0}: remaining.documents
 #. placeholder {1}: quota.documents
@@ -287,6 +298,13 @@ msgstr "{0} di {1} documenti rimanenti questo mese."
 #: packages/lib/server-only/document/resend-document.ts
 msgid "{0} on behalf of \"{1}\" has invited you to {recipientActionVerb} the document \"{2}\"."
 msgstr "{0} per conto di \"{1}\" ti ha invitato a {recipientActionVerb} il documento \"{2}\"."
+
+#. placeholder {0}: user.name || user.email
+#. placeholder {1}: envelope.team.name
+#. placeholder {2}: envelope.title
+#: packages/lib/server-only/document/resend-document.ts
+msgid "{0} on behalf of \"{1}\" has invited you to sign the document \"{2}\"."
+msgstr ""
 
 #. placeholder {0}: organisation.name
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl._index.tsx
@@ -357,6 +375,14 @@ msgstr "{inviterName} ti ha invitato a {action} {documentName}"
 msgid "{inviterName} has invited you to {action} the document \"{documentName}\"."
 msgstr "{inviterName} ti ha invitato a {action} il documento \"{documentName}\"."
 
+#: packages/email/templates/document-invite.tsx
+msgid "{inviterName} has invited you to sign {documentName}"
+msgstr ""
+
+#: packages/email/template-components/template-document-invite.tsx
+msgid "{inviterName} has invited you to sign<0/>\"{documentName}\""
+msgstr ""
+
 #: packages/email/templates/recipient-removed-from-document.tsx
 msgid "{inviterName} has removed you from the document {documentName}."
 msgstr "{inviterName} ti ha rimosso dal documento {documentName}."
@@ -371,6 +397,12 @@ msgstr "{inviterName} ti ha rimosso dal documento<0/>\"{documentName}\""
 msgid "{inviterName} on behalf of \"{0}\" has invited you to {recipientActionVerb} the document \"{1}\"."
 msgstr "{inviterName} a nome di \"{0}\" ti ha invitato a {recipientActionVerb} il documento \"{1}\"."
 
+#. placeholder {0}: team.name
+#. placeholder {1}: envelope.title
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "{inviterName} on behalf of \"{0}\" has invited you to sign the document \"{1}\"."
+msgstr ""
+
 #. placeholder {0}: _(actionVerb).toLowerCase()
 #: packages/email/template-components/template-document-invite.tsx
 msgid "{inviterName} on behalf of \"{teamName}\" has invited you to {0}<0/>\"{documentName}\""
@@ -379,6 +411,14 @@ msgstr "{inviterName} per conto di \"{teamName}\" ti ha invitato a {0}<0/>\"{doc
 #: packages/email/templates/document-invite.tsx
 msgid "{inviterName} on behalf of \"{teamName}\" has invited you to {action} {documentName}"
 msgstr "{inviterName} per conto di \"{teamName}\" ti ha invitato a {action} {documentName}"
+
+#: packages/email/templates/document-invite.tsx
+msgid "{inviterName} on behalf of \"{teamName}\" has invited you to sign {documentName}"
+msgstr ""
+
+#: packages/email/template-components/template-document-invite.tsx
+msgid "{inviterName} on behalf of \"{teamName}\" has invited you to sign<0/>\"{documentName}\""
+msgstr ""
 
 #: apps/remix/app/components/dialogs/passkey-create-dialog.tsx
 msgid "{MAXIMUM_PASSKEYS, plural, one {You cannot have more than # passkey.} other {You cannot have more than # passkeys.}}"
@@ -450,6 +490,14 @@ msgstr "{teamName} ti ha invitato a {0}<0/>\"{documentName}\""
 #: packages/email/templates/document-invite.tsx
 msgid "{teamName} has invited you to {action} {documentName}"
 msgstr "{teamName} ti ha invitato a {action} {documentName}"
+
+#: packages/email/templates/document-invite.tsx
+msgid "{teamName} has invited you to sign {documentName}"
+msgstr ""
+
+#: packages/email/template-components/template-document-invite.tsx
+msgid "{teamName} has invited you to sign<0/>\"{documentName}\""
+msgstr ""
 
 #: packages/lib/utils/document-audit-logs.ts
 msgid "{user} added a field"
@@ -904,6 +952,10 @@ msgstr "Un dispositivo in grado di accedere, aprire e leggere documenti"
 #: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
 msgid "A document was created by your direct template that requires you to {recipientActionVerb} it."
 msgstr "Un documento è stato creato dal tuo modello diretto che richiede di {recipientActionVerb}."
+
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "A document was created by your direct template that requires you to sign it."
+msgstr ""
 
 #: apps/remix/app/components/dialogs/template-use-dialog.tsx
 msgid "A draft document will be created"
@@ -2987,7 +3039,6 @@ msgstr "Campo copiato negli appunti"
 #: apps/remix/app/routes/_authenticated+/admin+/teams.$id.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-#: packages/ui/components/document/document-share-button.tsx
 #: packages/ui/primitives/document-flow/add-subject.tsx
 msgid "Copied to clipboard"
 msgstr "Copiato negli appunti"
@@ -2996,10 +3047,6 @@ msgstr "Copiato negli appunti"
 #: packages/ui/primitives/document-flow/add-subject.tsx
 msgid "Copy"
 msgstr "Copia"
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "Copy Link"
-msgstr "Copia il link"
 
 #: apps/remix/app/routes/_authenticated+/admin+/teams.$id.tsx
 msgid "Copy organisation ID"
@@ -4315,6 +4362,7 @@ msgstr "Non trasferire (elimina tutti i documenti)"
 #: apps/remix/app/components/tables/documents-table-action-dropdown.tsx
 #: apps/remix/app/components/tables/inbox-table.tsx
 #: apps/remix/app/components/tables/organisation-billing-invoices-table.tsx
+#: apps/remix/app/components/tables/templates-table-action-dropdown.tsx
 #: apps/remix/app/routes/_recipient+/sign.$token+/complete.tsx
 #: packages/email/template-components/template-document-completed.tsx
 msgid "Download"
@@ -4922,6 +4970,10 @@ msgstr "Busta distribuita"
 
 #: apps/remix/app/routes/_internal+/[__htmltopdf]+/audit-log.tsx
 #: packages/lib/server-only/pdf/render-audit-logs.ts
+#: packages/lib/server-only/pdf/render-audit-logs.ts
+#: packages/lib/server-only/pdf/render-audit-logs.ts
+#: packages/lib/server-only/pdf/render-certificate.ts
+#: packages/lib/server-only/pdf/render-certificate.ts
 msgid "Envelope ID"
 msgstr "ID Busta"
 
@@ -7694,8 +7746,6 @@ msgstr "Si prega di inserire un nome significativo per il proprio token. Questo 
 msgid "Please enter a number"
 msgstr "Inserisci un numero"
 
-#: apps/remix/app/components/forms/profile.tsx
-#: apps/remix/app/components/forms/signup.tsx
 #: apps/remix/app/components/general/claim-account.tsx
 msgid "Please enter a valid name."
 msgstr "Per favore inserisci un nome valido."
@@ -7796,6 +7846,22 @@ msgstr "Seleziona almeno un membro da aggiungere al team."
 #: apps/remix/app/components/general/document-signing/access-auth-2fa-form.tsx
 msgid "Please select how you'd like to receive your verification code."
 msgstr "Seleziona come desideri ricevere il tuo codice di verifica."
+
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "Please sign this document created by your direct template"
+msgstr ""
+
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "Please sign your document"
+msgstr ""
+
+#: packages/email/templates/document-invite.tsx
+msgid "Please sign your document {documentName}"
+msgstr ""
+
+#: packages/email/template-components/template-document-invite.tsx
+msgid "Please sign your document<0/>\"{documentName}\""
+msgstr ""
 
 #: apps/remix/app/components/dialogs/organisation-email-domain-create-dialog.tsx
 msgid "Please try a different domain."
@@ -8306,6 +8372,12 @@ msgstr "Promemoria: {0}"
 msgid "Reminder: {0} invited you to {recipientActionVerb} a document"
 msgstr "Promemoria: {0} ti ha invitato a {recipientActionVerb} un documento"
 
+#. placeholder {0}: envelope.team.name
+#: packages/lib/jobs/definitions/internal/process-signing-reminder.handler.ts
+#: packages/lib/server-only/document/resend-document.ts
+msgid "Reminder: {0} invited you to sign a document"
+msgstr ""
+
 #. placeholder {0}: _(actionVerb).toLowerCase()
 #: packages/email/template-components/template-document-reminder.tsx
 msgid "Reminder: Please {0} your document<0/>\"{documentName}\""
@@ -8323,6 +8395,15 @@ msgstr "Promemoria: per favore {recipientActionVerb} questo documento"
 #: packages/lib/server-only/document/resend-document.ts
 msgid "Reminder: Please {recipientActionVerb} your document"
 msgstr "Promemoria: per favore {recipientActionVerb} il tuo documento"
+
+#. placeholder {0}: envelope.title
+#: packages/lib/jobs/definitions/internal/process-signing-reminder.handler.ts
+msgid "Reminder: Please sign the document \"{0}\""
+msgstr ""
+
+#: packages/lib/server-only/document/resend-document.ts
+msgid "Reminder: Please sign your document"
+msgstr ""
 
 #: apps/remix/app/components/general/envelope-editor/envelope-editor-settings-dialog.tsx
 msgid "Reminders"
@@ -8562,10 +8643,6 @@ msgstr "Codice di risposta"
 #: apps/remix/app/components/general/webhook-logs-sheet.tsx
 msgid "Response Headers"
 msgstr "Header di risposta"
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "Rest assured, your document is strictly confidential and will never be shared. Only your signing experience will be highlighted. Share your personalized signing card to showcase your signature!"
-msgstr "Stai tranquillo, il tuo documento è strettamente confidenziale e non sarà mai condiviso. Solo la tua esperienza di firma sarà evidenziata. Condividi la tua carta di firma personalizzata per mostrare la tua firma!"
 
 #: apps/remix/app/components/general/organisations/organisation-billing-banner.tsx
 msgid "Restricted Access"
@@ -9130,7 +9207,6 @@ msgstr "Configurazione"
 
 #: apps/remix/app/components/general/document/document-page-view-dropdown.tsx
 #: apps/remix/app/components/tables/documents-table-action-dropdown.tsx
-#: packages/ui/components/document/document-share-button.tsx
 msgid "Share"
 msgstr "Condividi"
 
@@ -9142,10 +9218,6 @@ msgstr "Condividi scheda di firma"
 #: packages/lib/constants/template.ts
 msgid "Share the Link"
 msgstr "Condividi il link"
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "Share your signing experience!"
-msgstr "Condividi la tua esperienza di firma!"
 
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.public-profile.tsx
 msgid "Show"
@@ -9508,7 +9580,6 @@ msgstr "Alcuni firmatari non hanno un campo firma assegnato. Assegna almeno 1 ca
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.public-profile.tsx
 #: apps/remix/app/routes/_unauthenticated+/verify-email.$token.tsx
 #: apps/remix/app/routes/_unauthenticated+/verify-email.$token.tsx
-#: packages/ui/components/document/document-share-button.tsx
 msgid "Something went wrong"
 msgstr "Qualcosa è andato storto"
 
@@ -10462,14 +10533,6 @@ msgstr "Il destinatario è tenuto a visualizzare il documento affinché sia comp
 #: apps/remix/app/routes/_authenticated+/admin+/email-domains.$id.tsx
 msgid "The SES identity has been deleted and recreated with the same keys. DNS records remain unchanged."
 msgstr "L’identità SES è stata eliminata e ricreata con le stesse chiavi. I record DNS rimangono invariati."
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "The sharing link could not be created at this time. Please try again."
-msgstr "Il link di condivisione non può essere creato in questo momento. Per favore riprova."
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "The sharing link has been copied to your clipboard."
-msgstr "Il link di condivisione è stato copiato negli appunti."
 
 #: packages/ui/components/document/document-send-email-message-helper.tsx
 msgid "The signer's email"
@@ -11737,10 +11800,6 @@ msgstr "I profili utente sono qui!"
 msgid "User settings"
 msgstr "Impostazioni utente"
 
-#: apps/remix/app/components/forms/signup.tsx
-msgid "User with this email already exists. Please use a different email address."
-msgstr "Un utente con questo email esiste già. Si prega di utilizzare un indirizzo email diverso."
-
 #: apps/remix/app/components/tables/organisation-insights-table.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/_layout.tsx
 msgid "Users"
@@ -12285,6 +12344,10 @@ msgstr "Non siamo riusciti a copiare il token negli appunti. Si prega di riprova
 #: apps/remix/app/components/forms/2fa/recovery-code-list.tsx
 msgid "We were unable to copy your recovery code to your clipboard. Please try again."
 msgstr "Non siamo riusciti a copiare il tuo codice di recupero negli appunti. Si prega di riprovare."
+
+#: apps/remix/app/components/forms/signup.tsx
+msgid "We were unable to create your account. If you already have an account, try signing in instead."
+msgstr ""
 
 #: apps/remix/app/components/forms/signup.tsx
 msgid "We were unable to create your account. Please review the information you provided and try again."
@@ -12933,6 +12996,12 @@ msgstr "Hai rifiutato l'invito da <0>{0}</0> a unirti alla loro organizzazione."
 #: packages/lib/server-only/document/resend-document.ts
 msgid "You have initiated the document {0} that requires you to {recipientActionVerb} it."
 msgstr "Hai avviato il documento {0} che richiede che tu lo {recipientActionVerb}."
+
+#. placeholder {0}: `"${envelope.title}"`
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+#: packages/lib/server-only/document/resend-document.ts
+msgid "You have initiated the document {0} that requires you to sign it."
+msgstr ""
 
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.webhooks._index.tsx
 msgid "You have no webhooks yet. Your webhooks will be shown here once you create them."
@@ -13636,4 +13705,3 @@ msgstr "Il tuo codice di verifica:"
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
 msgid "your-domain.com another-domain.com"
 msgstr "tuo-dominio.com altro-dominio.com"
-

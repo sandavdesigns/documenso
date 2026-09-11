@@ -269,9 +269,20 @@ msgid "{0} has invited you to {recipientActionVerb} the document \"{1}\"."
 msgstr "{0}에서 \"{1}\" 문서에 대해 귀하께 {recipientActionVerb}하도록 초대했습니다."
 
 #. placeholder {0}: team.name
+#. placeholder {1}: envelope.title
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "{0} has invited you to sign the document \"{1}\"."
+msgstr ""
+
+#. placeholder {0}: team.name
 #: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
 msgid "{0} invited you to {recipientActionVerb} a document"
 msgstr "{0}이(가) 귀하께 문서에 {recipientActionVerb}하도록 초대했습니다."
+
+#. placeholder {0}: team.name
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "{0} invited you to sign a document"
+msgstr ""
 
 #. placeholder {0}: remaining.documents
 #. placeholder {1}: quota.documents
@@ -287,6 +298,13 @@ msgstr "이번 달 남은 문서 {1}개 중 {0}개."
 #: packages/lib/server-only/document/resend-document.ts
 msgid "{0} on behalf of \"{1}\" has invited you to {recipientActionVerb} the document \"{2}\"."
 msgstr "{0}이(가) \"{1}\"을(를) 대신하여 \"{2}\" 문서에 대해 귀하께 {recipientActionVerb}하도록 초대했습니다."
+
+#. placeholder {0}: user.name || user.email
+#. placeholder {1}: envelope.team.name
+#. placeholder {2}: envelope.title
+#: packages/lib/server-only/document/resend-document.ts
+msgid "{0} on behalf of \"{1}\" has invited you to sign the document \"{2}\"."
+msgstr ""
 
 #. placeholder {0}: organisation.name
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl._index.tsx
@@ -357,6 +375,14 @@ msgstr "{inviterName}이(가) 귀하께 {action} {documentName} 문서를 요청
 msgid "{inviterName} has invited you to {action} the document \"{documentName}\"."
 msgstr "{inviterName}이(가) 귀하께 \"{documentName}\" 문서에 {action}하도록 초대했습니다."
 
+#: packages/email/templates/document-invite.tsx
+msgid "{inviterName} has invited you to sign {documentName}"
+msgstr ""
+
+#: packages/email/template-components/template-document-invite.tsx
+msgid "{inviterName} has invited you to sign<0/>\"{documentName}\""
+msgstr ""
+
 #: packages/email/templates/recipient-removed-from-document.tsx
 msgid "{inviterName} has removed you from the document {documentName}."
 msgstr "{inviterName}이(가) 귀하를 {documentName} 문서에서 제거했습니다."
@@ -371,6 +397,12 @@ msgstr "{inviterName}이(가) 귀하를 문서에서 제거했습니다<0/>\"{do
 msgid "{inviterName} on behalf of \"{0}\" has invited you to {recipientActionVerb} the document \"{1}\"."
 msgstr "{inviterName}이(가) \"{0}\"을(를) 대신하여 \"{1}\" 문서에 대해 귀하께 {recipientActionVerb}하도록 초대했습니다."
 
+#. placeholder {0}: team.name
+#. placeholder {1}: envelope.title
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "{inviterName} on behalf of \"{0}\" has invited you to sign the document \"{1}\"."
+msgstr ""
+
 #. placeholder {0}: _(actionVerb).toLowerCase()
 #: packages/email/template-components/template-document-invite.tsx
 msgid "{inviterName} on behalf of \"{teamName}\" has invited you to {0}<0/>\"{documentName}\""
@@ -379,6 +411,14 @@ msgstr "{inviterName}이(가) \"{0}\"을(를) 대신하여 문서 \"{documentNam
 #: packages/email/templates/document-invite.tsx
 msgid "{inviterName} on behalf of \"{teamName}\" has invited you to {action} {documentName}"
 msgstr "{inviterName}이(가) \"{teamName}\"을(를) 대신하여 {documentName} 문서에 {action}하도록 귀하를 초대했습니다."
+
+#: packages/email/templates/document-invite.tsx
+msgid "{inviterName} on behalf of \"{teamName}\" has invited you to sign {documentName}"
+msgstr ""
+
+#: packages/email/template-components/template-document-invite.tsx
+msgid "{inviterName} on behalf of \"{teamName}\" has invited you to sign<0/>\"{documentName}\""
+msgstr ""
 
 #: apps/remix/app/components/dialogs/passkey-create-dialog.tsx
 msgid "{MAXIMUM_PASSKEYS, plural, one {You cannot have more than # passkey.} other {You cannot have more than # passkeys.}}"
@@ -450,6 +490,14 @@ msgstr "{teamName}이(가) 문서 \"{documentName}\"에 대해 귀하께 {0}하�
 #: packages/email/templates/document-invite.tsx
 msgid "{teamName} has invited you to {action} {documentName}"
 msgstr "{teamName}이(가) 귀하께 {action} {documentName} 문서를 요청했습니다."
+
+#: packages/email/templates/document-invite.tsx
+msgid "{teamName} has invited you to sign {documentName}"
+msgstr ""
+
+#: packages/email/template-components/template-document-invite.tsx
+msgid "{teamName} has invited you to sign<0/>\"{documentName}\""
+msgstr ""
 
 #: packages/lib/utils/document-audit-logs.ts
 msgid "{user} added a field"
@@ -904,6 +952,10 @@ msgstr "문서에 접근하고 열람 및 읽을 수 있는 장치"
 #: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
 msgid "A document was created by your direct template that requires you to {recipientActionVerb} it."
 msgstr "귀하의 다이렉트 템플릿에서 생성된 문서가 있으며, 이 문서에 {recipientActionVerb}해야 합니다."
+
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "A document was created by your direct template that requires you to sign it."
+msgstr ""
 
 #: apps/remix/app/components/dialogs/template-use-dialog.tsx
 msgid "A draft document will be created"
@@ -2987,7 +3039,6 @@ msgstr "필드를 클립보드에 복사했습니다."
 #: apps/remix/app/routes/_authenticated+/admin+/teams.$id.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-#: packages/ui/components/document/document-share-button.tsx
 #: packages/ui/primitives/document-flow/add-subject.tsx
 msgid "Copied to clipboard"
 msgstr "클립보드에 복사되었습니다"
@@ -2996,10 +3047,6 @@ msgstr "클립보드에 복사되었습니다"
 #: packages/ui/primitives/document-flow/add-subject.tsx
 msgid "Copy"
 msgstr "복사"
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "Copy Link"
-msgstr "링크 복사"
 
 #: apps/remix/app/routes/_authenticated+/admin+/teams.$id.tsx
 msgid "Copy organisation ID"
@@ -4315,6 +4362,7 @@ msgstr "전송하지 않음(모든 문서 삭제)"
 #: apps/remix/app/components/tables/documents-table-action-dropdown.tsx
 #: apps/remix/app/components/tables/inbox-table.tsx
 #: apps/remix/app/components/tables/organisation-billing-invoices-table.tsx
+#: apps/remix/app/components/tables/templates-table-action-dropdown.tsx
 #: apps/remix/app/routes/_recipient+/sign.$token+/complete.tsx
 #: packages/email/template-components/template-document-completed.tsx
 msgid "Download"
@@ -4922,6 +4970,10 @@ msgstr "봉투가 배포되었습니다"
 
 #: apps/remix/app/routes/_internal+/[__htmltopdf]+/audit-log.tsx
 #: packages/lib/server-only/pdf/render-audit-logs.ts
+#: packages/lib/server-only/pdf/render-audit-logs.ts
+#: packages/lib/server-only/pdf/render-audit-logs.ts
+#: packages/lib/server-only/pdf/render-certificate.ts
+#: packages/lib/server-only/pdf/render-certificate.ts
 msgid "Envelope ID"
 msgstr "봉투 ID"
 
@@ -7694,8 +7746,6 @@ msgstr "토큰을 나중에 식별할 수 있도록 의미 있는 이름을 입�
 msgid "Please enter a number"
 msgstr "숫자를 입력하세요"
 
-#: apps/remix/app/components/forms/profile.tsx
-#: apps/remix/app/components/forms/signup.tsx
 #: apps/remix/app/components/general/claim-account.tsx
 msgid "Please enter a valid name."
 msgstr "올바른 이름을 입력해 주세요."
@@ -7796,6 +7846,22 @@ msgstr "팀에 추가할 구성원을 최소 한 명 이상 선택하세요."
 #: apps/remix/app/components/general/document-signing/access-auth-2fa-form.tsx
 msgid "Please select how you'd like to receive your verification code."
 msgstr "인증 코드를 받을 방식을 선택하세요."
+
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "Please sign this document created by your direct template"
+msgstr ""
+
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+msgid "Please sign your document"
+msgstr ""
+
+#: packages/email/templates/document-invite.tsx
+msgid "Please sign your document {documentName}"
+msgstr ""
+
+#: packages/email/template-components/template-document-invite.tsx
+msgid "Please sign your document<0/>\"{documentName}\""
+msgstr ""
 
 #: apps/remix/app/components/dialogs/organisation-email-domain-create-dialog.tsx
 msgid "Please try a different domain."
@@ -8306,6 +8372,12 @@ msgstr "알림: {0}"
 msgid "Reminder: {0} invited you to {recipientActionVerb} a document"
 msgstr "알림: {0}에서 문서에 {recipientActionVerb}하도록 초대했습니다."
 
+#. placeholder {0}: envelope.team.name
+#: packages/lib/jobs/definitions/internal/process-signing-reminder.handler.ts
+#: packages/lib/server-only/document/resend-document.ts
+msgid "Reminder: {0} invited you to sign a document"
+msgstr ""
+
 #. placeholder {0}: _(actionVerb).toLowerCase()
 #: packages/email/template-components/template-document-reminder.tsx
 msgid "Reminder: Please {0} your document<0/>\"{documentName}\""
@@ -8323,6 +8395,15 @@ msgstr "알림: 이 문서를 {recipientActionVerb}해 주세요."
 #: packages/lib/server-only/document/resend-document.ts
 msgid "Reminder: Please {recipientActionVerb} your document"
 msgstr "알림: 귀하의 문서를 {recipientActionVerb}해 주세요."
+
+#. placeholder {0}: envelope.title
+#: packages/lib/jobs/definitions/internal/process-signing-reminder.handler.ts
+msgid "Reminder: Please sign the document \"{0}\""
+msgstr ""
+
+#: packages/lib/server-only/document/resend-document.ts
+msgid "Reminder: Please sign your document"
+msgstr ""
 
 #: apps/remix/app/components/general/envelope-editor/envelope-editor-settings-dialog.tsx
 msgid "Reminders"
@@ -8562,10 +8643,6 @@ msgstr "응답 코드"
 #: apps/remix/app/components/general/webhook-logs-sheet.tsx
 msgid "Response Headers"
 msgstr "응답 헤더"
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "Rest assured, your document is strictly confidential and will never be shared. Only your signing experience will be highlighted. Share your personalized signing card to showcase your signature!"
-msgstr "귀하의 문서는 철저히 비밀로 유지되며 절대 공유되지 않습니다. 강조되는 것은 귀하의 서명 경험뿐입니다. 개인화된 서명 카드를 공유해 서명을 보여 주세요!"
 
 #: apps/remix/app/components/general/organisations/organisation-billing-banner.tsx
 msgid "Restricted Access"
@@ -9130,7 +9207,6 @@ msgstr "설정"
 
 #: apps/remix/app/components/general/document/document-page-view-dropdown.tsx
 #: apps/remix/app/components/tables/documents-table-action-dropdown.tsx
-#: packages/ui/components/document/document-share-button.tsx
 msgid "Share"
 msgstr "공유"
 
@@ -9142,10 +9218,6 @@ msgstr "서명 카드 공유"
 #: packages/lib/constants/template.ts
 msgid "Share the Link"
 msgstr "링크 공유"
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "Share your signing experience!"
-msgstr "서명 경험을 공유하세요!"
 
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.public-profile.tsx
 msgid "Show"
@@ -9508,7 +9580,6 @@ msgstr "일부 서명자에게 서명 필드가 할당되지 않았습니다. �
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.public-profile.tsx
 #: apps/remix/app/routes/_unauthenticated+/verify-email.$token.tsx
 #: apps/remix/app/routes/_unauthenticated+/verify-email.$token.tsx
-#: packages/ui/components/document/document-share-button.tsx
 msgid "Something went wrong"
 msgstr "문제가 발생했습니다"
 
@@ -10462,14 +10533,6 @@ msgstr "수신자가 문서를 완료하기 위해 열람해야 합니다."
 #: apps/remix/app/routes/_authenticated+/admin+/email-domains.$id.tsx
 msgid "The SES identity has been deleted and recreated with the same keys. DNS records remain unchanged."
 msgstr "SES ID가 삭제된 후 동일한 키로 다시 생성되었습니다. DNS 레코드는 변경되지 않았습니다."
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "The sharing link could not be created at this time. Please try again."
-msgstr "현재 공유 링크를 생성할 수 없습니다. 다시 시도해 주세요."
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "The sharing link has been copied to your clipboard."
-msgstr "공유 링크가 클립보드에 복사되었습니다."
 
 #: packages/ui/components/document/document-send-email-message-helper.tsx
 msgid "The signer's email"
@@ -11737,10 +11800,6 @@ msgstr "사용자 프로필이 추가되었습니다!"
 msgid "User settings"
 msgstr "사용자 설정"
 
-#: apps/remix/app/components/forms/signup.tsx
-msgid "User with this email already exists. Please use a different email address."
-msgstr "이 이메일을 사용하는 사용자가 이미 있습니다. 다른 이메일 주소를 사용해 주세요."
-
 #: apps/remix/app/components/tables/organisation-insights-table.tsx
 #: apps/remix/app/routes/_authenticated+/admin+/_layout.tsx
 msgid "Users"
@@ -12285,6 +12344,10 @@ msgstr "토큰을 클립보드에 복사하지 못했습니다. 다시 시도해
 #: apps/remix/app/components/forms/2fa/recovery-code-list.tsx
 msgid "We were unable to copy your recovery code to your clipboard. Please try again."
 msgstr "복구 코드를 클립보드에 복사하지 못했습니다. 다시 시도해 주세요."
+
+#: apps/remix/app/components/forms/signup.tsx
+msgid "We were unable to create your account. If you already have an account, try signing in instead."
+msgstr ""
 
 #: apps/remix/app/components/forms/signup.tsx
 msgid "We were unable to create your account. Please review the information you provided and try again."
@@ -12933,6 +12996,12 @@ msgstr "<0>{0}</0> 조직의 초대를 거절했습니다."
 #: packages/lib/server-only/document/resend-document.ts
 msgid "You have initiated the document {0} that requires you to {recipientActionVerb} it."
 msgstr "귀하가 시작한 문서 {0}에 {recipientActionVerb}해야 합니다."
+
+#. placeholder {0}: `"${envelope.title}"`
+#: packages/lib/jobs/definitions/emails/send-signing-email.handler.ts
+#: packages/lib/server-only/document/resend-document.ts
+msgid "You have initiated the document {0} that requires you to sign it."
+msgstr ""
 
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.webhooks._index.tsx
 msgid "You have no webhooks yet. Your webhooks will be shown here once you create them."
@@ -13636,4 +13705,3 @@ msgstr "인증 코드:"
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
 msgid "your-domain.com another-domain.com"
 msgstr "your-domain.com another-domain.com"
-
