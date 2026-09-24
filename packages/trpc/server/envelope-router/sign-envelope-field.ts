@@ -1,6 +1,7 @@
 import { isBase64Image } from '@documenso/lib/constants/signatures';
 import { AppError, AppErrorCode } from '@documenso/lib/errors/app-error';
 import { validateFieldAuth } from '@documenso/lib/server-only/document/validate-field-auth';
+import { normalizeSignatureImage } from '@documenso/lib/server-only/signature/normalize-signature-image';
 import { DOCUMENT_AUDIT_LOG_TYPE } from '@documenso/lib/types/document-audit-logs';
 import { createDocumentAuditLogData } from '@documenso/lib/utils/document-audit-logs';
 import { extractFieldInsertionValues } from '@documenso/lib/utils/envelope-signing';
@@ -199,7 +200,7 @@ export const signEnvelopeFieldRoute = procedure
       if (fieldValue.value) {
         const isBase64 = isBase64Image(fieldValue.value);
 
-        signatureImageAsBase64 = isBase64 ? fieldValue.value : null;
+        signatureImageAsBase64 = isBase64 ? await normalizeSignatureImage(fieldValue.value) : null;
         typedSignature = !isBase64 ? fieldValue.value : null;
       }
     }

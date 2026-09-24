@@ -45,6 +45,7 @@ import { sendDocument } from '../document/send-document';
 import { validateFieldAuth } from '../document/validate-field-auth';
 import { incrementDocumentId } from '../envelope/increment-id';
 import { assertOrganisationRatesAndLimits } from '../rate-limit/assert-organisation-rates-and-limits';
+import { normalizeSignatureImage } from '../signature/normalize-signature-image';
 import { resolveSignatureLevel } from '../signature-level/resolve-signature-level';
 import { getTeamSettings } from '../team/get-team-settings';
 import { triggerWebhook } from '../webhooks/trigger/trigger-webhook';
@@ -293,7 +294,8 @@ export const createDocumentFromDirectTemplate = async ({
 
       let customText = !isSignatureField ? value : '';
 
-      const signatureImageAsBase64 = isSignatureField && isBase64 ? value : undefined;
+      const signatureImageAsBase64 =
+        isSignatureField && isBase64 ? await normalizeSignatureImage(value ?? '') : undefined;
       const typedSignature = isSignatureField && !isBase64 ? value : undefined;
 
       if (templateField.type === FieldType.DATE) {

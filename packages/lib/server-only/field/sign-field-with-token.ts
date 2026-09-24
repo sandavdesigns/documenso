@@ -26,6 +26,7 @@ import type { RequestMetadata } from '../../universal/extract-request-metadata';
 import { createDocumentAuditLogData } from '../../utils/document-audit-logs';
 import { assertRecipientNotExpired } from '../../utils/recipients';
 import { validateFieldAuth } from '../document/validate-field-auth';
+import { normalizeSignatureImage } from '../signature/normalize-signature-image';
 
 export type SignFieldWithTokenOptions = {
   token: string;
@@ -191,7 +192,7 @@ export const signFieldWithToken = async ({
 
   let customText = !isSignatureField ? value : undefined;
 
-  const signatureImageAsBase64 = isSignatureField && isBase64 ? value : undefined;
+  const signatureImageAsBase64 = isSignatureField && isBase64 ? await normalizeSignatureImage(value) : undefined;
   const typedSignature = isSignatureField && !isBase64 ? value : undefined;
 
   if (field.type === FieldType.DATE) {
