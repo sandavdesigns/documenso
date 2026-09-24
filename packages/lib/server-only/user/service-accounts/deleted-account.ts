@@ -1,6 +1,32 @@
 import { prisma } from '@documenso/prisma';
 
 const LEGACY_DELETED_ACCOUNT_EMAIL = 'deleted-account@documenso.com';
+const DELETED_ACCOUNT_EMAIL_PREFIX = 'deleted-account@';
+
+const deletedAccountServiceAccountSelect = {
+  id: true,
+  email: true,
+  ownedOrganisations: {
+    select: {
+      id: true,
+      teams: {
+        select: {
+          id: true,
+        },
+      },
+    },
+  },
+} as const;
+
+const hasOwnedTeam = {
+  ownedOrganisations: {
+    some: {
+      teams: {
+        some: {},
+      },
+    },
+  },
+} as const;
 
 export const deletedServiceAccountEmail = () => {
   try {
@@ -13,49 +39,95 @@ export const deletedServiceAccountEmail = () => {
     const { hostname } = new URL(process.env.NEXT_PUBLIC_WEBAPP_URL || 'http://localhost:3000');
 
     return `deleted-account@${hostname}`;
-  } catch (error) {
+  } catch {
     return LEGACY_DELETED_ACCOUNT_EMAIL;
   }
 };
 
 export const deletedAccountServiceAccount = async () => {
-  const serviceAccount = await prisma.user.findFirst({
+  const currentEmail = deletedServiceAccountEmail();
+
+  const currentServiceAccount = await prisma.user.findFirst({
     where: {
-      email: deletedServiceAccountEmail(),
+      email: currentEmail,
+      ...hasOwnedTeam,
+    },
+    select: deletedAccountServiceAccountSelect,
+  });
+
+  if (currentServiceAccount) {
+    return currentServiceAccount;
+  }
+
+  // The derived address changes when NEXT_PUBLIC_WEBAPP_URL changes. Fall
+  // back to a service account created for an earlier hostname so team and
+  // organisation deletion keeps working after a URL migration.
+  const previousServiceAccount = await prisma.user.findFirst({
+    where: {
+      email: {
+        startsWith: DELETED_ACCOUNT_EMAIL_PREFIX,
+      },
+      ...hasOwnedTeam,
+    },
+    orderBy: {
+      id: 'asc',
+    },
+    select: deletedAccountServiceAccountSelect,
+  });
+
+  if (!previousServiceAccount) {
+    throw new Error('Deleted account service account not found, have you ran the appropriate migrations?');
+  }
+
+  return previousServiceAccount;
+};
+
+export const migrateDeletedAccountServiceAccount = async () => {
+  const currentEmail = deletedServiceAccountEmail();
+
+  if (currentEmail === LEGACY_DELETED_ACCOUNT_EMAIL) {
+    return;
+  }
+
+  const currentServiceAccount = await prisma.user.findFirst({
+    where: {
+      email: currentEmail,
+      ...hasOwnedTeam,
+    },
+    select: {
+      id: true,
+    },
+  });
+
+  if (currentServiceAccount) {
+    return;
+  }
+
+  const previousServiceAccount = await prisma.user.findFirst({
+    where: {
+      email: {
+        startsWith: DELETED_ACCOUNT_EMAIL_PREFIX,
+      },
+      ...hasOwnedTeam,
+    },
+    orderBy: {
+      id: 'asc',
     },
     select: {
       id: true,
       email: true,
-      ownedOrganisations: {
-        select: {
-          id: true,
-          teams: {
-            select: {
-              id: true,
-            },
-          },
-        },
-      },
     },
   });
 
-  if (!serviceAccount) {
-    throw new Error('Deleted account service account not found, have you ran the appropriate migrations?');
-  }
+  if (previousServiceAccount && previousServiceAccount.email !== currentEmail) {
+    console.log(`Migrating deleted account service account to new email: ${currentEmail}`);
 
-  return serviceAccount;
-};
-
-export const migrateDeletedAccountServiceAccount = async () => {
-  if (deletedServiceAccountEmail() !== LEGACY_DELETED_ACCOUNT_EMAIL) {
-    console.log(`Migrating deleted account service account to new email: ${deletedServiceAccountEmail()}`);
-
-    await prisma.user.updateMany({
+    await prisma.user.update({
       where: {
-        email: LEGACY_DELETED_ACCOUNT_EMAIL,
+        id: previousServiceAccount.id,
       },
       data: {
-        email: deletedServiceAccountEmail(),
+        email: currentEmail,
       },
     });
   }
