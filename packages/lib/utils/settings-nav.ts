@@ -121,12 +121,6 @@ export const getSettingsNavGroups = ({
             label: msg`Reminders`,
             isSubNav: true,
           },
-          {
-            key: 'preferences-certificates',
-            path: `/o/${organisation.url}/settings/certificates`,
-            label: msg`Certificates`,
-            isSubNav: true,
-          },
           ...((isBillingEnabled && organisation.organisationClaim.flags.emailDomains) || isDocumensoCloud
             ? [
                 {
@@ -219,12 +213,6 @@ export const getSettingsNavGroups = ({
               key: 'preferences-reminders',
               path: `/t/${team.url}/settings/reminders`,
               label: msg`Reminders`,
-              isSubNav: true,
-            },
-            {
-              key: 'preferences-certificates',
-              path: `/t/${team.url}/settings/certificates`,
-              label: msg`Certificates`,
               isSubNav: true,
             },
             {

@@ -961,8 +961,8 @@ model OrganisationGlobalSettings {
   documentVisibility        DocumentVisibility @default(EVERYONE)
   documentLanguage          String             @default("de")
   includeSenderDetails      Boolean            @default(true)
-  includeSigningCertificate Boolean            @default(true)
-  includeAuditLog           Boolean            @default(true)
+  includeSigningCertificate Boolean            @default(false)
+  includeAuditLog           Boolean            @default(false)
   documentTimezone          String? // Nullable to allow using local timezones if not set.
   documentDateFormat        String             @default("dd.MM.yyyy")
   delegateDocumentOwnership Boolean            @default(false)

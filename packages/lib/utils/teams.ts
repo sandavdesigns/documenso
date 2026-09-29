@@ -233,6 +233,11 @@ export const extractDerivedTeamSettings = (
     }
   }
 
+  // Company policy: keep supporting evidence available separately instead of
+  // appending certificate and audit-log pages to every completed PDF.
+  derivedSettings.includeSigningCertificate = false;
+  derivedSettings.includeAuditLog = false;
+
   return derivedSettings;
 };
 

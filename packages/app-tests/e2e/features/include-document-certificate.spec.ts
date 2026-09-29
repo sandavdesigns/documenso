@@ -8,11 +8,10 @@ import { PDF } from '@libpdf/core';
 import { expect, test } from '@playwright/test';
 import { DocumentStatus, FieldType } from '@prisma/client';
 
-import { apiSignin } from '../fixtures/authentication';
 import { signSignaturePad } from '../fixtures/signature';
 
-test.describe('Signing Certificate Tests', () => {
-  test('individual document should always include signing certificate', async ({ page }) => {
+test.describe('Company PDF appendix policy', () => {
+  test('individual document should not append signing certificate pages', async ({ page }) => {
     const { user, team } = await seedUser({
       isPersonalOrganisation: true,
     });
@@ -102,10 +101,10 @@ test.describe('Signing Certificate Tests', () => {
     // Load the PDF and check number of pages
     const pdfDoc = await PDF.load(new Uint8Array(completedDocumentData));
 
-    expect(pdfDoc.getPageCount()).toBe(originalPdf.getPageCount() + 1); // Original + Certificate
+    expect(pdfDoc.getPageCount()).toBe(originalPdf.getPageCount());
   });
 
-  test('team document with signing certificate enabled should include certificate', async ({ page }) => {
+  test('stored team override should not append signing certificate pages', async ({ page }) => {
     const { owner, team } = await seedTeam();
 
     const { document, recipients } = await seedPendingDocumentWithFullFields({
@@ -205,7 +204,7 @@ test.describe('Signing Certificate Tests', () => {
     // Load the PDF and check number of pages
     const completedPdf = await PDF.load(new Uint8Array(completedDocumentData));
 
-    expect(completedPdf.getPageCount()).toBe(originalPdf.getPageCount() + 1); // Original + Certificate
+    expect(completedPdf.getPageCount()).toBe(originalPdf.getPageCount());
   });
 
   test('team document with signing certificate disabled should not include certificate', async ({ page }) => {
@@ -305,47 +304,5 @@ test.describe('Signing Certificate Tests', () => {
     const completedPdf = await PDF.load(new Uint8Array(completedDocumentData));
 
     expect(completedPdf.getPageCount()).toBe(originalPdf.getPageCount());
-  });
-
-  test('team can toggle signing certificate setting', async ({ page }) => {
-    const { owner, team } = await seedTeam();
-
-    await apiSignin({
-      page,
-      email: owner.email,
-      redirectPath: `/t/${team.url}/settings/certificates`,
-    });
-
-    await page.getByTestId('include-signing-certificate-trigger').click();
-    await page.getByRole('option', { name: 'No' }).click();
-
-    await page.getByRole('button', { name: 'Save changes' }).first().click();
-    await expect(page.getByText('Your certificate preferences have been updated').first()).toBeVisible();
-
-    // Verify the setting was saved
-    const updatedTeam = await prisma.team.findFirstOrThrow({
-      where: { id: team.id },
-      include: { teamGlobalSettings: true },
-    });
-
-    expect(updatedTeam.teamGlobalSettings?.includeSigningCertificate).toBe(false);
-
-    // Toggle the setting back to true
-    await page.getByTestId('include-signing-certificate-trigger').click();
-    await page.getByRole('option', { name: 'Yes' }).click();
-    await page.getByRole('button', { name: 'Save changes' }).first().click();
-
-    // The toast from the first save may still be visible, so poll the database
-    // for the saved value instead of waiting on UI signals.
-    await expect
-      .poll(async () => {
-        const updatedTeam = await prisma.team.findFirstOrThrow({
-          where: { id: team.id },
-          include: { teamGlobalSettings: true },
-        });
-
-        return updatedTeam.teamGlobalSettings?.includeSigningCertificate;
-      })
-      .toBe(true);
   });
 });
