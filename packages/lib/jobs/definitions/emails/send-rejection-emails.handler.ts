@@ -11,6 +11,7 @@ import { getI18nInstance } from '../../../client-only/providers/i18n-server';
 import { NEXT_PUBLIC_WEBAPP_URL } from '../../../constants/app';
 import { DOCUMENSO_INTERNAL_EMAIL } from '../../../constants/email';
 import { getEmailContext } from '../../../server-only/email/get-email-context';
+import { resolveDocumentOwnerNotificationRecipient } from '../../../server-only/email/resolve-document-owner-notification-recipient';
 import { extractDerivedDocumentEmailSettings } from '../../../types/document-email';
 import { unsafeBuildEnvelopeIdQuery } from '../../../utils/envelope';
 import { renderEmailWithI18N } from '../../../utils/render-email-with-i18n';
@@ -131,10 +132,7 @@ export const run = async ({ payload, io }: { payload: TSendSigningRejectionEmail
     ]);
 
     await mailer.sendMail({
-      to: {
-        name: documentOwner.name || '',
-        address: documentOwner.email,
-      },
+      to: resolveDocumentOwnerNotificationRecipient({ owner: documentOwner, replyToEmail }),
       from: DOCUMENSO_INTERNAL_EMAIL, // Purposefully using internal email here.
       subject: i18n._(msg`Document "${envelope.title}" - Rejected by ${recipient.name}`),
       html,

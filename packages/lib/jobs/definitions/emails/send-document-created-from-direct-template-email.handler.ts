@@ -6,6 +6,7 @@ import { createElement } from 'react';
 import { getI18nInstance } from '../../../client-only/providers/i18n-server';
 import { NEXT_PUBLIC_WEBAPP_URL } from '../../../constants/app';
 import { getEmailContext } from '../../../server-only/email/get-email-context';
+import { resolveDocumentOwnerNotificationRecipient } from '../../../server-only/email/resolve-document-owner-notification-recipient';
 import { renderEmailWithI18N } from '../../../utils/render-email-with-i18n';
 import { formatDocumentsPath } from '../../../utils/teams';
 import type { TSendDocumentCreatedFromDirectTemplateEmailJobDefinition } from './send-document-created-from-direct-template-email';
@@ -50,7 +51,7 @@ export const run = async ({ payload }: { payload: TSendDocumentCreatedFromDirect
   const [recipient] = envelope.recipients;
   const { user: templateOwner } = envelope;
 
-  const { branding, emailLanguage, senderEmail, emailTransport } = await getEmailContext({
+  const { branding, emailLanguage, senderEmail, replyToEmail, emailTransport } = await getEmailContext({
     emailType: 'INTERNAL',
     source: {
       type: 'team',
@@ -79,12 +80,7 @@ export const run = async ({ payload }: { payload: TSendDocumentCreatedFromDirect
   ]);
 
   await emailTransport.sendMail({
-    to: [
-      {
-        name: templateOwner.name || '',
-        address: templateOwner.email,
-      },
-    ],
+    to: [resolveDocumentOwnerNotificationRecipient({ owner: templateOwner, replyToEmail })],
     from: senderEmail,
     subject: i18n._(msg`Document created from direct template`),
     html,

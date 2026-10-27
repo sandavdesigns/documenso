@@ -6,6 +6,7 @@ import { createElement } from 'react';
 import { getI18nInstance } from '../../../client-only/providers/i18n-server';
 import { NEXT_PUBLIC_WEBAPP_URL } from '../../../constants/app';
 import { getEmailContext } from '../../../server-only/email/get-email-context';
+import { resolveDocumentOwnerNotificationRecipient } from '../../../server-only/email/resolve-document-owner-notification-recipient';
 import { extractDerivedDocumentEmailSettings } from '../../../types/document-email';
 import { renderEmailWithI18N } from '../../../utils/render-email-with-i18n';
 import { formatDocumentsPath } from '../../../utils/teams';
@@ -61,7 +62,7 @@ export const run = async ({ payload, io }: { payload: TSendOwnerRecipientExpired
     return;
   }
 
-  const { branding, emailLanguage, senderEmail, emailsDisabled, emailTransport } = await getEmailContext({
+  const { branding, emailLanguage, senderEmail, replyToEmail, emailsDisabled, emailTransport } = await getEmailContext({
     emailType: 'RECIPIENT',
     source: {
       type: 'team',
@@ -98,10 +99,7 @@ export const run = async ({ payload, io }: { payload: TSendOwnerRecipientExpired
     ]);
 
     await emailTransport.sendMail({
-      to: {
-        name: documentOwner.name || '',
-        address: documentOwner.email,
-      },
+      to: resolveDocumentOwnerNotificationRecipient({ owner: documentOwner, replyToEmail }),
       from: senderEmail,
       subject: i18n._(msg`Signing window expired for "${recipient.name || recipient.email}" on "${envelope.title}"`),
       html,

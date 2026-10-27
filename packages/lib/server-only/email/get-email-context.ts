@@ -128,6 +128,8 @@ export const getEmailContext = async (options: GetEmailContextOptions): Promise<
         transport: mailer,
       };
 
+  const replyToEmail = meta?.emailReplyTo || emailContext.settings.emailReplyTo || undefined;
+
   // Immediate return for internal emails.
   if (options.emailType === 'INTERNAL') {
     return {
@@ -137,12 +139,10 @@ export const getEmailContext = async (options: GetEmailContextOptions): Promise<
         name: resolvedTransportData.name,
         address: resolvedTransportData.address,
       },
-      replyToEmail: undefined,
+      replyToEmail,
       emailLanguage,
     };
   }
-
-  const replyToEmail = meta?.emailReplyTo || emailContext.settings.emailReplyTo || undefined;
 
   const senderEmailId = match(meta?.emailId)
     .with(P.string, (emailId) => emailId) // Explicit string means to use the provided email ID.

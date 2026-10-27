@@ -7,6 +7,7 @@ import { createElement } from 'react';
 import { getI18nInstance } from '../../../client-only/providers/i18n-server';
 import { NEXT_PUBLIC_WEBAPP_URL } from '../../../constants/app';
 import { getEmailContext } from '../../../server-only/email/get-email-context';
+import { resolveDocumentOwnerNotificationRecipient } from '../../../server-only/email/resolve-document-owner-notification-recipient';
 import { extractDerivedDocumentEmailSettings } from '../../../types/document-email';
 import { unsafeBuildEnvelopeIdQuery } from '../../../utils/envelope';
 import { isRecipientEmailValidForSending } from '../../../utils/recipients';
@@ -74,7 +75,7 @@ export const run = async ({ payload, io }: { payload: TSendRecipientSignedEmailJ
     return;
   }
 
-  const { branding, emailLanguage, senderEmail, emailTransport } = await getEmailContext({
+  const { branding, emailLanguage, senderEmail, replyToEmail, emailTransport } = await getEmailContext({
     emailType: 'INTERNAL',
     source: {
       type: 'team',
@@ -105,10 +106,7 @@ export const run = async ({ payload, io }: { payload: TSendRecipientSignedEmailJ
     ]);
 
     await emailTransport.sendMail({
-      to: {
-        name: owner.name ?? '',
-        address: owner.email,
-      },
+      to: resolveDocumentOwnerNotificationRecipient({ owner, replyToEmail }),
       from: senderEmail,
       subject: i18n._(msg`${recipientReference} has signed "${envelope.title}"`),
       html,
