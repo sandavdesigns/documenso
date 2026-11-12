@@ -63,6 +63,9 @@ type FieldSignature =
  * Multiplied by `devicePixelRatio` to keep the cache crisp on retina displays.
  */
 const SIGNATURE_IMAGE_CACHE_PIXEL_RATIO = 2;
+const SIGNATURE_IMAGE_AREA_X = 'signatureImageAreaX';
+const SIGNATURE_IMAGE_AREA_WIDTH = 'signatureImageAreaWidth';
+const SIGNATURE_IMAGE_AREA_HEIGHT = 'signatureImageAreaHeight';
 
 const resizeSignatureImage = (
   image: Konva.Image,
@@ -73,6 +76,9 @@ const resizeSignatureImage = (
 ) => {
   const source = image.image() as HTMLImageElement | undefined;
 
+  image.setAttr(SIGNATURE_IMAGE_AREA_X, offsetX);
+  image.setAttr(SIGNATURE_IMAGE_AREA_WIDTH, fieldWidth);
+  image.setAttr(SIGNATURE_IMAGE_AREA_HEIGHT, fieldHeight);
   image.clearCache();
 
   if (source?.width && source.height) {
@@ -120,7 +126,13 @@ const createSignatureImage = (
 
     img.onload = () => {
       image.image(img);
-      resizeSignatureImage(image, offsetX, fieldWidth, fieldHeight, true);
+      resizeSignatureImage(
+        image,
+        (image.getAttr(SIGNATURE_IMAGE_AREA_X) as number | undefined) ?? offsetX,
+        (image.getAttr(SIGNATURE_IMAGE_AREA_WIDTH) as number | undefined) ?? fieldWidth,
+        (image.getAttr(SIGNATURE_IMAGE_AREA_HEIGHT) as number | undefined) ?? fieldHeight,
+        true,
+      );
     };
 
     img.src = signatureImageAsBase64;
