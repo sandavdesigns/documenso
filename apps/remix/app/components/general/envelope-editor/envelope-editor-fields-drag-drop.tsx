@@ -205,6 +205,12 @@ export const EnvelopeEditorFieldDragDrop = ({
       pageX -= fieldPageWidth / 2;
       pageY -= fieldPageHeight / 2;
 
+      const fieldMeta = structuredClone(FIELD_META_DEFAULT_VALUES[selectedField.type]);
+
+      if (fieldMeta.type === 'signature') {
+        fieldMeta.signatureVariant = selectedField.signatureVariant ?? 'standard';
+      }
+
       const field = {
         formId: nanoid(12),
         envelopeItemId: selectedEnvelopeItemId,
@@ -215,12 +221,7 @@ export const EnvelopeEditorFieldDragDrop = ({
         width: fieldPageWidth,
         height: fieldPageHeight,
         recipientId: selectedRecipientId,
-        fieldMeta: {
-          ...structuredClone(FIELD_META_DEFAULT_VALUES[selectedField.type]),
-          ...(selectedField.type === FieldType.SIGNATURE
-            ? { signatureVariant: selectedField.signatureVariant ?? 'standard' }
-            : {}),
-        },
+        fieldMeta,
       };
 
       editorFields.addField(field);

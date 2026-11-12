@@ -78,12 +78,15 @@ const resizeSignatureImage = (
   if (source?.width && source.height) {
     const dimensions = getImageDimensions(source, fieldWidth, fieldHeight);
 
-    image.setAttrs({
-      ...dimensions,
-      x: offsetX + dimensions.x,
-    });
+    image.x(offsetX + dimensions.x);
+    image.y(dimensions.y);
+    image.width(dimensions.width);
+    image.height(dimensions.height);
   } else {
-    image.setAttrs({ x: offsetX, y: 0, width: fieldWidth, height: fieldHeight });
+    image.x(offsetX);
+    image.y(0);
+    image.width(fieldWidth);
+    image.height(fieldHeight);
   }
 
   if (cache && typeof window !== 'undefined') {
