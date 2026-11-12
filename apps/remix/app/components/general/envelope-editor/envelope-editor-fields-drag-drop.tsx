@@ -207,6 +207,10 @@ export const EnvelopeEditorFieldDragDrop = ({
 
       const fieldMeta = structuredClone(FIELD_META_DEFAULT_VALUES[selectedField.type]);
 
+      if (!fieldMeta) {
+        return;
+      }
+
       if (fieldMeta.type === 'signature') {
         fieldMeta.signatureVariant = selectedField.signatureVariant ?? 'standard';
       }
