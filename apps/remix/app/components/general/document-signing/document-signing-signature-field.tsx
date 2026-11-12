@@ -2,6 +2,7 @@ import { useAnalytics } from '@documenso/lib/client-only/hooks/use-analytics';
 import { DO_NOT_INVALIDATE_QUERY_ON_MUTATION } from '@documenso/lib/constants/trpc';
 import { AppError, AppErrorCode } from '@documenso/lib/errors/app-error';
 import type { TRecipientActionAuth } from '@documenso/lib/types/document-auth';
+import { type TSignatureFieldMeta, getSignatureVariantLabel } from '@documenso/lib/types/field-meta';
 import type { FieldWithSignature } from '@documenso/prisma/types/field-with-signature';
 import { trpc } from '@documenso/trpc/react';
 import type {
@@ -71,6 +72,8 @@ export const DocumentSigningSignatureField = ({
     trpc.field.removeSignedFieldWithToken.useMutation(DO_NOT_INVALIDATE_QUERY_ON_MUTATION);
 
   const { signature } = field;
+  const signatureFieldMeta = field.fieldMeta as TSignatureFieldMeta | null;
+  const signatureVariantLabel = getSignatureVariantLabel(signatureFieldMeta?.signatureVariant);
 
   const isLoading = isSignFieldWithTokenLoading || isRemoveSignedFieldWithTokenLoading;
 
@@ -254,21 +257,28 @@ export const DocumentSigningSignatureField = ({
       )}
 
       {state === 'empty' && (
-        <p className="font-signature text-[clamp(0.575rem,25cqw,1.2rem)] text-muted-foreground text-xl duration-200 group-hover:text-primary group-hover:text-recipient-green">
-          <Trans>Signature</Trans>
-        </p>
+        <div className="flex items-center gap-1.5 text-muted-foreground duration-200 group-hover:text-primary group-hover:text-recipient-green">
+          {signatureVariantLabel && <span className="font-noto text-sm">{signatureVariantLabel}</span>}
+          <p className="font-signature text-[clamp(0.575rem,25cqw,1.2rem)] text-xl">
+            <Trans>Signature</Trans>
+          </p>
+        </div>
       )}
 
       {state === 'signed-image' && signature?.signatureImageAsBase64 && (
-        <img
-          src={signature.signatureImageAsBase64}
-          alt={`Signature for ${recipient.name}`}
-          className="h-full w-full object-contain"
-        />
+        <div className="flex h-full w-full items-center gap-1.5 overflow-hidden">
+          {signatureVariantLabel && <span className="shrink-0 font-noto text-sm">{signatureVariantLabel}</span>}
+          <img
+            src={signature.signatureImageAsBase64}
+            alt={`Signature for ${recipient.name}`}
+            className="h-full min-w-0 flex-1 object-contain"
+          />
+        </div>
       )}
 
       {state === 'signed-text' && (
-        <div ref={containerRef} className="flex h-full w-full items-center justify-center p-2">
+        <div ref={containerRef} className="flex h-full w-full items-center justify-center gap-1.5 p-2">
+          {signatureVariantLabel && <span className="shrink-0 font-noto text-sm">{signatureVariantLabel}</span>}
           <p
             ref={signatureRef}
             className="w-full overflow-hidden break-all text-center font-signature text-muted-foreground leading-tight duration-200"

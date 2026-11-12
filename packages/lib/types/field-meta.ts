@@ -20,6 +20,21 @@ export const DEFAULT_SIGNATURE_OVERFLOW_MODE = 'auto';
 export const DEFAULT_DATE_OVERFLOW_MODE = 'auto';
 export const DEFAULT_EMAIL_OVERFLOW_MODE = 'auto';
 
+export const ZSignatureVariant = z.enum(['standard', 'ia', 'iv']);
+export type TSignatureVariant = z.infer<typeof ZSignatureVariant>;
+
+export const getSignatureVariantLabel = (variant?: TSignatureVariant | null): string => {
+  if (variant === 'ia') {
+    return 'i. A.';
+  }
+
+  if (variant === 'iv') {
+    return 'i. V.';
+  }
+
+  return '';
+};
+
 /**
  * The overflow mode for a field.
  *
@@ -181,6 +196,7 @@ export type TDropdownFieldMeta = z.infer<typeof ZDropdownFieldMeta>;
 export const ZSignatureFieldMeta = ZBaseFieldMeta.extend({
   type: z.literal('signature'),
   overflow: ZFieldOverflowMode.optional().default(DEFAULT_SIGNATURE_OVERFLOW_MODE),
+  signatureVariant: ZSignatureVariant.optional().default('standard'),
 });
 
 export type TSignatureFieldMeta = z.infer<typeof ZSignatureFieldMeta>;
@@ -384,6 +400,7 @@ export const FIELD_SIGNATURE_META_DEFAULT_VALUES: TSignatureFieldMeta = {
   type: 'signature',
   fontSize: DEFAULT_SIGNATURE_TEXT_FONT_SIZE,
   overflow: DEFAULT_SIGNATURE_OVERFLOW_MODE,
+  signatureVariant: 'standard',
 };
 
 export const FIELD_META_DEFAULT_VALUES: Record<FieldType, TFieldMetaSchema> = {

@@ -4,7 +4,8 @@ import {
   type TSignatureFieldMeta,
   ZSignatureFieldMeta,
 } from '@documenso/lib/types/field-meta';
-import { Form } from '@documenso/ui/primitives/form/form';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@documenso/ui/primitives/form/form';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@documenso/ui/primitives/select';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Trans } from '@lingui/react/macro';
 import { useEffect } from 'react';
@@ -16,6 +17,7 @@ import { EditorGenericFontSizeField } from './editor-field-generic-field-forms';
 const ZSignatureFieldFormSchema = ZSignatureFieldMeta.pick({
   fontSize: true,
   overflow: true,
+  signatureVariant: true,
 });
 
 type TSignatureFieldFormSchema = z.infer<typeof ZSignatureFieldFormSchema>;
@@ -37,6 +39,7 @@ export const EditorFieldSignatureForm = ({
     defaultValues: {
       overflow: value.overflow || FIELD_SIGNATURE_META_DEFAULT_VALUES.overflow,
       fontSize: value.fontSize || DEFAULT_SIGNATURE_TEXT_FONT_SIZE,
+      signatureVariant: value.signatureVariant || FIELD_SIGNATURE_META_DEFAULT_VALUES.signatureVariant,
     },
   });
 
@@ -68,6 +71,33 @@ export const EditorFieldSignatureForm = ({
               <Trans>The typed signature font size</Trans>
             </p>
           </div>
+
+          <FormField
+            control={form.control}
+            name="signatureVariant"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  <Trans>Vertretungszusatz</Trans>
+                </FormLabel>
+                <FormControl>
+                  <Select value={field.value} onValueChange={field.onChange}>
+                    <SelectTrigger data-testid="field-form-signature-variant" className="w-full bg-background">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent position="popper">
+                      <SelectItem value="standard">
+                        <Trans>Ohne Zusatz</Trans>
+                      </SelectItem>
+                      <SelectItem value="ia">i. A.</SelectItem>
+                      <SelectItem value="iv">i. V.</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
         </fieldset>
       </form>
     </Form>

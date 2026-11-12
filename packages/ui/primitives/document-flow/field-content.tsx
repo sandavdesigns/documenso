@@ -1,5 +1,5 @@
 import { convertToLocalSystemFormat, DEFAULT_DOCUMENT_DATE_FORMAT } from '@documenso/lib/constants/date-formats';
-import type { TFieldMetaSchema } from '@documenso/lib/types/field-meta';
+import { type TFieldMetaSchema, getSignatureVariantLabel } from '@documenso/lib/types/field-meta';
 import { fromCheckboxValue } from '@documenso/lib/universal/field-checkbox';
 import { useLingui } from '@lingui/react';
 import { Trans } from '@lingui/react/macro';
@@ -34,6 +34,8 @@ export const FieldContent = ({ field, documentMeta }: FieldIconProps) => {
   const { _ } = useLingui();
 
   const { type, fieldMeta } = field;
+  const signatureVariantLabel =
+    fieldMeta?.type === 'signature' ? getSignatureVariantLabel(fieldMeta.signatureVariant) : '';
 
   // Render checkbox layout for checkbox fields, even if no values exist yet
   if (field.type === FieldType.CHECKBOX && field.fieldMeta?.type === 'checkbox') {
@@ -132,7 +134,18 @@ export const FieldContent = ({ field, documentMeta }: FieldIconProps) => {
 
   if (field.type === FieldType.SIGNATURE && field.signature?.signatureImageAsBase64 && field.inserted) {
     return (
-      <img src={field.signature.signatureImageAsBase64} alt="Signature" className="h-full w-full object-contain" />
+      <div className="flex h-full w-full items-center gap-[2cqw] overflow-hidden">
+        {signatureVariantLabel && (
+          <span className="shrink-0 font-noto text-[clamp(0.07rem,18cqw,0.825rem)] text-foreground">
+            {signatureVariantLabel}
+          </span>
+        )}
+        <img
+          src={field.signature.signatureImageAsBase64}
+          alt="Signature"
+          className="h-full min-w-0 flex-1 object-contain"
+        />
+      </div>
     );
   }
 
@@ -162,6 +175,21 @@ export const FieldContent = ({ field, documentMeta }: FieldIconProps) => {
     }
   }
 
+  if (isSignatureField && field.inserted && field.signature?.typedSignature) {
+    return (
+      <div className="flex h-full w-full items-center justify-center gap-[2cqw] overflow-hidden">
+        {signatureVariantLabel && (
+          <span className="shrink-0 font-noto text-[clamp(0.07rem,18cqw,0.825rem)] text-foreground">
+            {signatureVariantLabel}
+          </span>
+        )}
+        <span className="min-w-0 overflow-hidden font-signature text-[clamp(0.07rem,25cqw,1.125rem)] text-foreground">
+          {field.signature.typedSignature}
+        </span>
+      </div>
+    );
+  }
+
   const textAlign = fieldMeta && 'textAlign' in fieldMeta ? fieldMeta.textAlign : 'left';
 
   return (
@@ -176,7 +204,7 @@ export const FieldContent = ({ field, documentMeta }: FieldIconProps) => {
           },
         )}
       >
-        {textToDisplay || labelToDisplay}
+        {textToDisplay || (signatureVariantLabel ? `${signatureVariantLabel} ${labelToDisplay}` : labelToDisplay)}
       </p>
     </div>
   );
