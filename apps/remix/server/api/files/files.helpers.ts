@@ -109,6 +109,10 @@ const handleStaticFileRequest = async ({
   isDownload,
   context: c,
 }: StaticFileRequestOptions) => {
+  if (isDownload && version === 'signed' && status !== DocumentStatus.COMPLETED) {
+    return c.json({ error: 'The signed document is still being processed' }, 409);
+  }
+
   const documentDataToUse = version === 'signed' ? documentData.data : documentData.initialData;
 
   const etag = Buffer.from(sha256(documentDataToUse)).toString('hex');

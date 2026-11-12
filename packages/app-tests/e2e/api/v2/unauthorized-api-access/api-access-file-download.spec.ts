@@ -115,4 +115,22 @@ test.describe('Envelope item file download endpoint authorization', () => {
     expect(res.ok()).toBeFalsy();
     expect(res.status()).toBe(404);
   });
+
+  test('does not serve unfinished bytes as a signed recipient-token download', async ({ request }) => {
+    const owner = await seedUser();
+    const { user: recipient } = await seedUser();
+    const pendingDocument = await seedPendingDocument(owner.user, owner.team.id, [recipient], {
+      createDocumentOptions: { title: 'Processing Signed Download Test' },
+    });
+    const envelopeItem = pendingDocument.envelopeItems[0];
+    const recipientToken = pendingDocument.recipients[0].token;
+
+    const res = await request.get(
+      `${WEBAPP_BASE_URL}/api/files/token/${recipientToken}/envelopeItem/${envelopeItem.id}/download/signed`,
+    );
+
+    expect(res.ok()).toBeFalsy();
+    expect(res.status()).toBe(409);
+    expect(await res.json()).toEqual({ error: 'The signed document is still being processed' });
+  });
 });
