@@ -33,6 +33,7 @@ export type DocumentSigningSignatureFieldProps = {
   field: FieldWithSignature;
   onSignField?: (value: TSignFieldWithTokenMutationSchema) => Promise<void> | void;
   onUnsignField?: (value: TRemovedSignedFieldWithTokenMutationSchema) => Promise<void> | void;
+  onSignatureChanged?: (signature: string | null) => void;
   typedSignatureEnabled?: boolean;
   uploadSignatureEnabled?: boolean;
   drawSignatureEnabled?: boolean;
@@ -42,6 +43,7 @@ export const DocumentSigningSignatureField = ({
   field,
   onSignField,
   onUnsignField,
+  onSignatureChanged,
   typedSignatureEnabled,
   uploadSignatureEnabled,
   drawSignatureEnabled,
@@ -106,6 +108,7 @@ export const DocumentSigningSignatureField = ({
   const onDialogSignClick = () => {
     setShowSignatureModal(false);
     setProvidedSignature(localSignature);
+    onSignatureChanged?.(localSignature);
 
     if (!localSignature) {
       return;

@@ -124,11 +124,21 @@ export const EnvelopeEditorFieldDragDrop = ({
   selectedRecipientId,
   selectedEnvelopeItemId,
 }: EnvelopeEditorFieldDragDropProps) => {
-  const { envelope, editorFields, isTemplate, getRecipientColorKey } = useCurrentEnvelopeEditor();
+  const { envelope, editorFields, isTemplate, getRecipientColorKey, setIsPlacingItem } = useCurrentEnvelopeEditor();
 
   const { t } = useLingui();
 
   const [selectedField, setSelectedField] = useState<FieldButton | null>(null);
+
+  // Let the canvas know a field is being placed, so it can get its selection
+  // out of the way of the placement click.
+  useEffect(() => {
+    setIsPlacingItem(selectedField !== null);
+
+    return () => {
+      setIsPlacingItem(false);
+    };
+  }, [selectedField, setIsPlacingItem]);
 
   const { isWithinPageBounds, getPage } = useDocumentElement();
 
