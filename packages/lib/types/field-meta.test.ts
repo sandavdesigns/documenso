@@ -9,13 +9,14 @@ describe('signature field variants', () => {
 
   it.each([
     ['standard', ''],
-    ['ia', 'i. A.'],
-    ['iv', 'i. V.'],
+    ['ia', 'i.A.'],
+    ['iv', 'i.V.'],
+    ['ppa', 'ppa.'],
   ] as const)('maps %s to its visible label', (variant, label) => {
     expect(getSignatureVariantLabel(variant)).toBe(label);
   });
 
   it('rejects unsupported variants', () => {
-    expect(ZSignatureFieldMeta.safeParse({ type: 'signature', signatureVariant: 'ppa' }).success).toBe(false);
+    expect(ZSignatureFieldMeta.safeParse({ type: 'signature', signatureVariant: 'prokura' }).success).toBe(false);
   });
 });

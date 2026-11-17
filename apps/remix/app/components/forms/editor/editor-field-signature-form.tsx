@@ -89,8 +89,9 @@ export const EditorFieldSignatureForm = ({
                       <SelectItem value="standard">
                         <Trans>Ohne Zusatz</Trans>
                       </SelectItem>
-                      <SelectItem value="ia">i. A.</SelectItem>
-                      <SelectItem value="iv">i. V.</SelectItem>
+                      <SelectItem value="ia">i.A.</SelectItem>
+                      <SelectItem value="iv">i.V.</SelectItem>
+                      <SelectItem value="ppa">ppa.</SelectItem>
                     </SelectContent>
                   </Select>
                 </FormControl>

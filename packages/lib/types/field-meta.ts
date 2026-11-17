@@ -20,16 +20,20 @@ export const DEFAULT_SIGNATURE_OVERFLOW_MODE = 'auto';
 export const DEFAULT_DATE_OVERFLOW_MODE = 'auto';
 export const DEFAULT_EMAIL_OVERFLOW_MODE = 'auto';
 
-export const ZSignatureVariant = z.enum(['standard', 'ia', 'iv']);
+export const ZSignatureVariant = z.enum(['standard', 'ia', 'iv', 'ppa']);
 export type TSignatureVariant = z.infer<typeof ZSignatureVariant>;
 
 export const getSignatureVariantLabel = (variant?: TSignatureVariant | null): string => {
   if (variant === 'ia') {
-    return 'i. A.';
+    return 'i.A.';
   }
 
   if (variant === 'iv') {
-    return 'i. V.';
+    return 'i.V.';
+  }
+
+  if (variant === 'ppa') {
+    return 'ppa.';
   }
 
   return '';

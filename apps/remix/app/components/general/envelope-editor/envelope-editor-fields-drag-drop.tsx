@@ -53,14 +53,20 @@ export const fieldButtonList: FieldButton[] = [
   {
     type: FieldType.SIGNATURE,
     icon: SignatureIcon,
-    name: msg`i. A. Unterschrift`,
+    name: msg`i.A. Unterschrift`,
     signatureVariant: 'ia',
   },
   {
     type: FieldType.SIGNATURE,
     icon: SignatureIcon,
-    name: msg`i. V. Unterschrift`,
+    name: msg`i.V. Unterschrift`,
     signatureVariant: 'iv',
+  },
+  {
+    type: FieldType.SIGNATURE,
+    icon: SignatureIcon,
+    name: msg`ppa. Unterschrift`,
+    signatureVariant: 'ppa',
   },
   {
     type: FieldType.EMAIL,
