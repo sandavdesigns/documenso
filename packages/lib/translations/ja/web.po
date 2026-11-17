@@ -496,6 +496,10 @@ msgstr "{inviterName} から {action} {documentName} の依頼が届いていま
 msgid "{inviterName} has invited you to {action} the document \"{documentName}\"."
 msgstr "{inviterName} からドキュメント「{documentName}」の {action} を依頼されています。"
 
+#: packages/email/templates/document-invite.tsx
+msgid "{inviterName} has invited you to sign {documentName}"
+msgstr ""
+
 #: packages/email/templates/recipient-removed-from-document.tsx
 msgid "{inviterName} has removed you from the document {documentName}."
 msgstr "{inviterName} は、あなたをドキュメント {documentName} から削除しました。"
@@ -520,6 +524,10 @@ msgstr "{inviterName} が「{teamName}」を代表して {0}<0/>「{documentName
 #: packages/email/templates/document-invite.tsx
 msgid "{inviterName} on behalf of \"{teamName}\" has invited you to {action} {documentName}"
 msgstr "{inviterName} が「{teamName}」を代表して {action} {documentName} を依頼しています"
+
+#: packages/email/templates/document-invite.tsx
+msgid "{inviterName} on behalf of \"{teamName}\" has invited you to sign {documentName}"
+msgstr ""
 
 #: apps/remix/app/components/dialogs/envelopes-bulk-download-dialog.tsx
 msgid "{MAX_BULK_DOWNLOAD_ENVELOPES, plural, one {You can download up to # document at a time. Deselect some documents to continue.} other {You can download up to # documents at a time. Deselect some documents to continue.}}"
@@ -615,6 +623,10 @@ msgstr "{teamName} から {0}<0/>「{documentName}」の依頼が届いていま
 #: packages/email/templates/document-invite.tsx
 msgid "{teamName} has invited you to {action} {documentName}"
 msgstr "{teamName} から {action} {documentName} の依頼が届いています"
+
+#: packages/email/templates/document-invite.tsx
+msgid "{teamName} has invited you to sign {documentName}"
+msgstr ""
 
 #: apps/remix/app/components/general/app-command-menu.tsx
 msgid "{totalVisibleCount, plural, one {# item} other {# items}}"
@@ -3013,18 +3025,6 @@ msgstr "Cc 受信者"
 msgid "Center"
 msgstr "中央"
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.certificates.tsx
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.certificates.tsx
-msgid "Certificate preferences updated"
-msgstr ""
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.certificates.tsx
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.certificates.tsx
-#: packages/lib/utils/settings-nav.ts
-#: packages/lib/utils/settings-nav.ts
-msgid "Certificates"
-msgstr ""
-
 #: apps/remix/app/components/general/envelope-editor/canvas/envelope-canvas-field-action-buttons.tsx
 msgid "Change Field Type"
 msgstr "フィールドタイプを変更"
@@ -3638,7 +3638,6 @@ msgstr "フィールドをクリップボードにコピーしました"
 #: apps/remix/app/routes/_authenticated+/admin+/teams.$id.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-#: packages/ui/components/document/document-share-button.tsx
 #: packages/ui/primitives/document-flow/add-subject.tsx
 msgid "Copied to clipboard"
 msgstr "クリップボードにコピーしました"
@@ -3651,10 +3650,6 @@ msgstr "コピー"
 #: apps/remix/app/components/general/admin-license-card.tsx
 msgid "Copy license key"
 msgstr ""
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "Copy Link"
-msgstr "リンクをコピー"
 
 #: apps/remix/app/routes/_authenticated+/admin+/teams.$id.tsx
 msgid "Copy organisation ID"
@@ -5225,7 +5220,6 @@ msgstr "アカウントをお持ちでないですか？<0>サインアップ</0
 msgid "Don't repeat"
 msgstr "繰り返さない"
 
-#: apps/remix/app/components/dialogs/team-delete-dialog.tsx
 #: apps/remix/app/components/dialogs/team-delete-dialog.tsx
 msgid "Don't transfer (Delete all documents)"
 msgstr "転送しない（すべてのドキュメントを削除）"
@@ -6859,14 +6853,6 @@ msgstr "ここでは組織のブランディング設定を行えます。チー
 msgid "Here you can set branding preferences for your team."
 msgstr "ここでは、チーム用のブランディング設定を行うことができます。"
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.certificates.tsx
-msgid "Here you can set certificate and audit log preferences for your organisation. Teams will inherit these settings by default."
-msgstr ""
-
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.certificates.tsx
-msgid "Here you can set certificate and audit log preferences for your team."
-msgstr ""
-
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.document.tsx
 msgid "Here you can set document preferences for your organisation. Teams will inherit these settings by default."
 msgstr "ここでは組織のドキュメント設定を行えます。チームはこれらの設定をデフォルトで継承します。"
@@ -7011,6 +6997,14 @@ msgstr "私はこの文書の所有者です"
 #: apps/remix/app/routes/_unauthenticated+/o.$orgUrl.signin.tsx
 msgid "I understand that I am providing my credentials to a 3rd party service configured by this organisation"
 msgstr "この組織が設定したサードパーティサービスに資格情報を提供することを理解しました"
+
+#: apps/remix/app/components/general/envelope-editor/envelope-editor-fields-drag-drop.tsx
+msgid "i.A. Unterschrift"
+msgstr ""
+
+#: apps/remix/app/components/general/envelope-editor/envelope-editor-fields-drag-drop.tsx
+msgid "i.V. Unterschrift"
+msgstr ""
 
 #: apps/remix/app/components/tables/admin-claims-table.tsx
 #: apps/remix/app/components/tables/admin-dashboard-users-table.tsx
@@ -8677,6 +8671,10 @@ msgstr ""
 msgid "Off"
 msgstr "オフ"
 
+#: apps/remix/app/components/forms/editor/editor-field-signature-form.tsx
+msgid "Ohne Zusatz"
+msgstr ""
+
 #: apps/remix/app/components/general/folder/folder-sort-dropdown.tsx
 msgid "Oldest first"
 msgstr ""
@@ -9531,6 +9529,10 @@ msgstr "チームに追加するメンバーを少なくとも1人選択して�
 msgid "Please select how you'd like to receive your verification code."
 msgstr "認証コードの受け取り方法を選択してください。"
 
+#: packages/email/templates/document-invite.tsx
+msgid "Please sign your document {documentName}"
+msgstr ""
+
 #: apps/remix/app/components/general/settings-upsell/branding-upsell.tsx
 #: apps/remix/app/components/general/settings-upsell/email-domains-upsell.tsx
 msgid "Please sign: Example.pdf"
@@ -9605,6 +9607,10 @@ msgstr "Y 位置:"
 #: apps/remix/app/routes/embed+/v1+/multisign+/_index.tsx
 msgid "Powered by"
 msgstr "提供:"
+
+#: apps/remix/app/components/general/envelope-editor/envelope-editor-fields-drag-drop.tsx
+msgid "ppa. Unterschrift"
+msgstr ""
 
 #: apps/remix/app/components/dialogs/template-bulk-send-dialog.tsx
 msgid "Pre-formatted CSV template with example data."
@@ -10491,10 +10497,6 @@ msgstr "レスポンスコード"
 msgid "Response Headers"
 msgstr "レスポンスヘッダー"
 
-#: packages/ui/components/document/document-share-button.tsx
-msgid "Rest assured, your document is strictly confidential and will never be shared. Only your signing experience will be highlighted. Share your personalized signing card to showcase your signature!"
-msgstr "ドキュメント自体は厳重に機密扱いされ、共有されることはありませんのでご安心ください。強調されるのは署名体験のみです。あなただけの署名カードを共有して、署名をアピールしましょう。"
-
 #: apps/remix/app/components/general/settings-upsell/sso-portal-upsell.tsx
 msgid "Restrict sign-ins by email domain and choose the default role"
 msgstr ""
@@ -11215,7 +11217,6 @@ msgstr ""
 
 #: apps/remix/app/components/general/document/document-page-view-dropdown.tsx
 #: apps/remix/app/components/tables/documents-table-action-dropdown.tsx
-#: packages/ui/components/document/document-share-button.tsx
 msgid "Share"
 msgstr "共有"
 
@@ -11227,10 +11228,6 @@ msgstr "署名カードを共有"
 #: packages/lib/constants/template.ts
 msgid "Share the Link"
 msgstr "リンクを共有"
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "Share your signing experience!"
-msgstr "あなたの署名体験を共有しましょう！"
 
 #: apps/remix/app/components/tables/admin-document-recipient-item-table.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.public-profile.tsx
@@ -11724,7 +11721,6 @@ msgstr "一部の署名者に署名フィールドが割り当てられていま
 #: apps/remix/app/utils/toast-error-messages.ts
 #: apps/remix/app/utils/toast-error-messages.ts
 #: apps/remix/app/utils/toast-error-messages.ts
-#: packages/ui/components/document/document-share-button.tsx
 msgid "Something went wrong"
 msgstr "問題が発生しました"
 
@@ -11786,11 +11782,9 @@ msgstr "チームの請求サブスクリプションの更新中に問題が発
 msgid "Something went wrong while uploading this file"
 msgstr "ファイルのアップロード中に問題が発生しました"
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.certificates.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.document.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.reminders.tsx
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.certificates.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.document.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.email.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.reminders.tsx
@@ -12901,14 +12895,6 @@ msgstr "受信者は、ドキュメントを完了するために閲覧する必
 #: apps/remix/app/routes/_authenticated+/admin+/email-domains.$id.tsx
 msgid "The SES identity has been deleted and recreated with the same keys. DNS records remain unchanged."
 msgstr "SESアイデンティティは削除され、同じキーで再作成されました。DNSレコードは変更されていません。"
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "The sharing link could not be created at this time. Please try again."
-msgstr "共有リンクを現在作成できません。もう一度お試しください。"
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "The sharing link has been copied to your clipboard."
-msgstr "共有リンクをクリップボードにコピーしました。"
 
 #: packages/ui/components/document/document-send-email-message-helper.tsx
 msgid "The signer's email"
@@ -14560,6 +14546,10 @@ msgstr ""
 msgid "Vertical Align"
 msgstr "縦位置揃え"
 
+#: apps/remix/app/components/forms/editor/editor-field-signature-form.tsx
+msgid "Vertretungszusatz"
+msgstr ""
+
 #: apps/remix/app/components/embed/multisign/multi-sign-document-list.tsx
 #: apps/remix/app/components/forms/2fa/view-recovery-codes-dialog.tsx
 #: apps/remix/app/components/general/document/document-page-view-button.tsx
@@ -15134,11 +15124,6 @@ msgstr "現在、この文書を送信できませんでした。後でもう一
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.branding.tsx
 msgid "We were unable to update your branding preferences at this time, please try again later"
 msgstr "現在、ブランディング設定を更新できません。後でもう一度お試しください。"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.certificates.tsx
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.certificates.tsx
-msgid "We were unable to update your certificate preferences at this time, please try again later"
-msgstr ""
 
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.document.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.document.tsx
@@ -16343,11 +16328,6 @@ msgstr "一括送信を開始しました。完了後にメール通知が届き
 #: packages/email/templates/bulk-send-complete.tsx
 msgid "Your bulk send operation for template \"{templateName}\" has completed."
 msgstr "テンプレート「{templateName}」の一括送信が完了しました。"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.certificates.tsx
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.certificates.tsx
-msgid "Your certificate preferences have been updated"
-msgstr ""
 
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.billing.tsx
 msgid "Your current {currentProductName} plan is past due. Please update your payment information."

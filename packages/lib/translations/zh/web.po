@@ -496,6 +496,10 @@ msgstr "{inviterName} 已邀请您 {action} {documentName}"
 msgid "{inviterName} has invited you to {action} the document \"{documentName}\"."
 msgstr "{inviterName} 已邀请您 {action} 文档“{documentName}”。"
 
+#: packages/email/templates/document-invite.tsx
+msgid "{inviterName} has invited you to sign {documentName}"
+msgstr ""
+
 #: packages/email/templates/recipient-removed-from-document.tsx
 msgid "{inviterName} has removed you from the document {documentName}."
 msgstr "{inviterName} 已将您从文档 {documentName} 中移除。"
@@ -520,6 +524,10 @@ msgstr "{inviterName} 代表“{teamName}”已邀请您 {0}<0/>“{documentName
 #: packages/email/templates/document-invite.tsx
 msgid "{inviterName} on behalf of \"{teamName}\" has invited you to {action} {documentName}"
 msgstr "{inviterName} 代表“{teamName}”已邀请您 {action} {documentName}"
+
+#: packages/email/templates/document-invite.tsx
+msgid "{inviterName} on behalf of \"{teamName}\" has invited you to sign {documentName}"
+msgstr ""
 
 #: apps/remix/app/components/dialogs/envelopes-bulk-download-dialog.tsx
 msgid "{MAX_BULK_DOWNLOAD_ENVELOPES, plural, one {You can download up to # document at a time. Deselect some documents to continue.} other {You can download up to # documents at a time. Deselect some documents to continue.}}"
@@ -615,6 +623,10 @@ msgstr "{teamName} 已邀请您 {0}<0/>“{documentName}”"
 #: packages/email/templates/document-invite.tsx
 msgid "{teamName} has invited you to {action} {documentName}"
 msgstr "{teamName} 已邀请您 {action} {documentName}"
+
+#: packages/email/templates/document-invite.tsx
+msgid "{teamName} has invited you to sign {documentName}"
+msgstr ""
 
 #: apps/remix/app/components/general/app-command-menu.tsx
 msgid "{totalVisibleCount, plural, one {# item} other {# items}}"
@@ -3013,18 +3025,6 @@ msgstr "抄送人"
 msgid "Center"
 msgstr "居中"
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.certificates.tsx
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.certificates.tsx
-msgid "Certificate preferences updated"
-msgstr ""
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.certificates.tsx
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.certificates.tsx
-#: packages/lib/utils/settings-nav.ts
-#: packages/lib/utils/settings-nav.ts
-msgid "Certificates"
-msgstr ""
-
 #: apps/remix/app/components/general/envelope-editor/canvas/envelope-canvas-field-action-buttons.tsx
 msgid "Change Field Type"
 msgstr "更改字段类型"
@@ -3638,7 +3638,6 @@ msgstr "字段已复制到剪贴板"
 #: apps/remix/app/routes/_authenticated+/admin+/teams.$id.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-#: packages/ui/components/document/document-share-button.tsx
 #: packages/ui/primitives/document-flow/add-subject.tsx
 msgid "Copied to clipboard"
 msgstr "已复制到剪贴板"
@@ -3651,10 +3650,6 @@ msgstr "复制"
 #: apps/remix/app/components/general/admin-license-card.tsx
 msgid "Copy license key"
 msgstr ""
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "Copy Link"
-msgstr "复制链接"
 
 #: apps/remix/app/routes/_authenticated+/admin+/teams.$id.tsx
 msgid "Copy organisation ID"
@@ -5225,7 +5220,6 @@ msgstr "还没有账号？<0>注册</0>"
 msgid "Don't repeat"
 msgstr "不重复"
 
-#: apps/remix/app/components/dialogs/team-delete-dialog.tsx
 #: apps/remix/app/components/dialogs/team-delete-dialog.tsx
 msgid "Don't transfer (Delete all documents)"
 msgstr "不要转移（删除所有文档）"
@@ -6859,14 +6853,6 @@ msgstr "您可以在此为组织设置品牌偏好。团队将默认继承这些
 msgid "Here you can set branding preferences for your team."
 msgstr "在这里，你可以为你的团队设置品牌偏好。"
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.certificates.tsx
-msgid "Here you can set certificate and audit log preferences for your organisation. Teams will inherit these settings by default."
-msgstr ""
-
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.certificates.tsx
-msgid "Here you can set certificate and audit log preferences for your team."
-msgstr ""
-
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.document.tsx
 msgid "Here you can set document preferences for your organisation. Teams will inherit these settings by default."
 msgstr "您可以在此为组织设置文档偏好。团队将默认继承这些设置。"
@@ -7011,6 +6997,14 @@ msgstr "我是此文档的所有者"
 #: apps/remix/app/routes/_unauthenticated+/o.$orgUrl.signin.tsx
 msgid "I understand that I am providing my credentials to a 3rd party service configured by this organisation"
 msgstr "我理解我正在向此组织配置的第三方服务提供我的凭证"
+
+#: apps/remix/app/components/general/envelope-editor/envelope-editor-fields-drag-drop.tsx
+msgid "i.A. Unterschrift"
+msgstr ""
+
+#: apps/remix/app/components/general/envelope-editor/envelope-editor-fields-drag-drop.tsx
+msgid "i.V. Unterschrift"
+msgstr ""
 
 #: apps/remix/app/components/tables/admin-claims-table.tsx
 #: apps/remix/app/components/tables/admin-dashboard-users-table.tsx
@@ -8677,6 +8671,10 @@ msgstr ""
 msgid "Off"
 msgstr "关闭"
 
+#: apps/remix/app/components/forms/editor/editor-field-signature-form.tsx
+msgid "Ohne Zusatz"
+msgstr ""
+
 #: apps/remix/app/components/general/folder/folder-sort-dropdown.tsx
 msgid "Oldest first"
 msgstr ""
@@ -9531,6 +9529,10 @@ msgstr "请至少选择一名成员添加到团队。"
 msgid "Please select how you'd like to receive your verification code."
 msgstr "请选择您希望接收验证码的方式。"
 
+#: packages/email/templates/document-invite.tsx
+msgid "Please sign your document {documentName}"
+msgstr ""
+
 #: apps/remix/app/components/general/settings-upsell/branding-upsell.tsx
 #: apps/remix/app/components/general/settings-upsell/email-domains-upsell.tsx
 msgid "Please sign: Example.pdf"
@@ -9605,6 +9607,10 @@ msgstr "Y 轴位置："
 #: apps/remix/app/routes/embed+/v1+/multisign+/_index.tsx
 msgid "Powered by"
 msgstr "技术支持："
+
+#: apps/remix/app/components/general/envelope-editor/envelope-editor-fields-drag-drop.tsx
+msgid "ppa. Unterschrift"
+msgstr ""
 
 #: apps/remix/app/components/dialogs/template-bulk-send-dialog.tsx
 msgid "Pre-formatted CSV template with example data."
@@ -10491,10 +10497,6 @@ msgstr "响应代码"
 msgid "Response Headers"
 msgstr "响应头"
 
-#: packages/ui/components/document/document-share-button.tsx
-msgid "Rest assured, your document is strictly confidential and will never be shared. Only your signing experience will be highlighted. Share your personalized signing card to showcase your signature!"
-msgstr "请放心，您的文档将被严格保密，绝不会被分享。只有您的签署体验会被展示。分享您的个性化签署卡片，展示您的签名！"
-
 #: apps/remix/app/components/general/settings-upsell/sso-portal-upsell.tsx
 msgid "Restrict sign-ins by email domain and choose the default role"
 msgstr ""
@@ -11215,7 +11217,6 @@ msgstr ""
 
 #: apps/remix/app/components/general/document/document-page-view-dropdown.tsx
 #: apps/remix/app/components/tables/documents-table-action-dropdown.tsx
-#: packages/ui/components/document/document-share-button.tsx
 msgid "Share"
 msgstr "分享"
 
@@ -11227,10 +11228,6 @@ msgstr "分享签署卡片"
 #: packages/lib/constants/template.ts
 msgid "Share the Link"
 msgstr "分享链接"
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "Share your signing experience!"
-msgstr "分享您的签署体验！"
 
 #: apps/remix/app/components/tables/admin-document-recipient-item-table.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.public-profile.tsx
@@ -11724,7 +11721,6 @@ msgstr "部分签署人尚未被分配签名字段。请在继续前为每位签
 #: apps/remix/app/utils/toast-error-messages.ts
 #: apps/remix/app/utils/toast-error-messages.ts
 #: apps/remix/app/utils/toast-error-messages.ts
-#: packages/ui/components/document/document-share-button.tsx
 msgid "Something went wrong"
 msgstr "出错了"
 
@@ -11786,11 +11782,9 @@ msgstr "更新团队账单订阅时出错，请联系支持。"
 msgid "Something went wrong while uploading this file"
 msgstr "上传此文件时出现问题"
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.certificates.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.document.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.reminders.tsx
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.certificates.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.document.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.email.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.reminders.tsx
@@ -12901,14 +12895,6 @@ msgstr "收件人必须查看该文档，文档才算完成。"
 #: apps/remix/app/routes/_authenticated+/admin+/email-domains.$id.tsx
 msgid "The SES identity has been deleted and recreated with the same keys. DNS records remain unchanged."
 msgstr "SES 身份已被删除并使用相同的密钥重新创建。DNS 记录保持不变。"
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "The sharing link could not be created at this time. Please try again."
-msgstr "目前无法创建分享链接。请重试。"
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "The sharing link has been copied to your clipboard."
-msgstr "分享链接已复制到您的剪贴板。"
 
 #: packages/ui/components/document/document-send-email-message-helper.tsx
 msgid "The signer's email"
@@ -14560,6 +14546,10 @@ msgstr ""
 msgid "Vertical Align"
 msgstr "垂直对齐"
 
+#: apps/remix/app/components/forms/editor/editor-field-signature-form.tsx
+msgid "Vertretungszusatz"
+msgstr ""
+
 #: apps/remix/app/components/embed/multisign/multi-sign-document-list.tsx
 #: apps/remix/app/components/forms/2fa/view-recovery-codes-dialog.tsx
 #: apps/remix/app/components/general/document/document-page-view-button.tsx
@@ -15134,11 +15124,6 @@ msgstr "目前无法提交此文档。请稍后再试。"
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.branding.tsx
 msgid "We were unable to update your branding preferences at this time, please try again later"
 msgstr "目前无法更新你的品牌偏好设置，请稍后再试"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.certificates.tsx
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.certificates.tsx
-msgid "We were unable to update your certificate preferences at this time, please try again later"
-msgstr ""
 
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.document.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.document.tsx
@@ -16343,11 +16328,6 @@ msgstr "您的批量发送已启动。完成后您将收到一封电子邮件通
 #: packages/email/templates/bulk-send-complete.tsx
 msgid "Your bulk send operation for template \"{templateName}\" has completed."
 msgstr "您针对模板“{templateName}”的批量发送操作已完成。"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.certificates.tsx
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.certificates.tsx
-msgid "Your certificate preferences have been updated"
-msgstr ""
 
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.billing.tsx
 msgid "Your current {currentProductName} plan is past due. Please update your payment information."

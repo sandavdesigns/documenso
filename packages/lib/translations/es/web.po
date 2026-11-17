@@ -496,6 +496,10 @@ msgstr "{inviterName} te ha invitado a {action} {documentName}"
 msgid "{inviterName} has invited you to {action} the document \"{documentName}\"."
 msgstr "{inviterName} te ha invitado a {action} el documento \"{documentName}\"."
 
+#: packages/email/templates/document-invite.tsx
+msgid "{inviterName} has invited you to sign {documentName}"
+msgstr ""
+
 #: packages/email/templates/recipient-removed-from-document.tsx
 msgid "{inviterName} has removed you from the document {documentName}."
 msgstr "{inviterName} te ha eliminado del documento {documentName}."
@@ -520,6 +524,10 @@ msgstr "{inviterName} en nombre de \"{teamName}\" te ha invitado a {0}<0/>\"{doc
 #: packages/email/templates/document-invite.tsx
 msgid "{inviterName} on behalf of \"{teamName}\" has invited you to {action} {documentName}"
 msgstr "{inviterName} en nombre de \"{teamName}\" te ha invitado a {action} {documentName}"
+
+#: packages/email/templates/document-invite.tsx
+msgid "{inviterName} on behalf of \"{teamName}\" has invited you to sign {documentName}"
+msgstr ""
 
 #: apps/remix/app/components/dialogs/envelopes-bulk-download-dialog.tsx
 msgid "{MAX_BULK_DOWNLOAD_ENVELOPES, plural, one {You can download up to # document at a time. Deselect some documents to continue.} other {You can download up to # documents at a time. Deselect some documents to continue.}}"
@@ -615,6 +623,10 @@ msgstr "{teamName} te ha invitado a {0}<0/>\"{documentName}\""
 #: packages/email/templates/document-invite.tsx
 msgid "{teamName} has invited you to {action} {documentName}"
 msgstr "{teamName} te ha invitado a {action} {documentName}"
+
+#: packages/email/templates/document-invite.tsx
+msgid "{teamName} has invited you to sign {documentName}"
+msgstr ""
 
 #: apps/remix/app/components/general/app-command-menu.tsx
 msgid "{totalVisibleCount, plural, one {# item} other {# items}}"
@@ -3013,18 +3025,6 @@ msgstr "Ccers"
 msgid "Center"
 msgstr "Centro"
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.certificates.tsx
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.certificates.tsx
-msgid "Certificate preferences updated"
-msgstr ""
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.certificates.tsx
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.certificates.tsx
-#: packages/lib/utils/settings-nav.ts
-#: packages/lib/utils/settings-nav.ts
-msgid "Certificates"
-msgstr ""
-
 #: apps/remix/app/components/general/envelope-editor/canvas/envelope-canvas-field-action-buttons.tsx
 msgid "Change Field Type"
 msgstr "Cambiar tipo de campo"
@@ -3638,7 +3638,6 @@ msgstr "Campo copiado al portapapeles"
 #: apps/remix/app/routes/_authenticated+/admin+/teams.$id.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.sso.tsx
-#: packages/ui/components/document/document-share-button.tsx
 #: packages/ui/primitives/document-flow/add-subject.tsx
 msgid "Copied to clipboard"
 msgstr "Copiado al portapapeles"
@@ -3651,10 +3650,6 @@ msgstr "Copiar"
 #: apps/remix/app/components/general/admin-license-card.tsx
 msgid "Copy license key"
 msgstr ""
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "Copy Link"
-msgstr "Copiar enlace"
 
 #: apps/remix/app/routes/_authenticated+/admin+/teams.$id.tsx
 msgid "Copy organisation ID"
@@ -5225,7 +5220,6 @@ msgstr "¿No tienes una cuenta? <0>Regístrate</0>"
 msgid "Don't repeat"
 msgstr "No repetir"
 
-#: apps/remix/app/components/dialogs/team-delete-dialog.tsx
 #: apps/remix/app/components/dialogs/team-delete-dialog.tsx
 msgid "Don't transfer (Delete all documents)"
 msgstr "No transferir (Eliminar todos los documentos)"
@@ -6859,14 +6853,6 @@ msgstr "Aquí puedes configurar las preferencias de marca para tu organización.
 msgid "Here you can set branding preferences for your team."
 msgstr "Aquí puedes configurar las preferencias de marca de tu equipo."
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.certificates.tsx
-msgid "Here you can set certificate and audit log preferences for your organisation. Teams will inherit these settings by default."
-msgstr ""
-
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.certificates.tsx
-msgid "Here you can set certificate and audit log preferences for your team."
-msgstr ""
-
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.document.tsx
 msgid "Here you can set document preferences for your organisation. Teams will inherit these settings by default."
 msgstr "Aquí puedes configurar las preferencias de documento para tu organización. Los equipos heredarán estas configuraciones por defecto."
@@ -7011,6 +6997,14 @@ msgstr "Soy el propietario de este documento"
 #: apps/remix/app/routes/_unauthenticated+/o.$orgUrl.signin.tsx
 msgid "I understand that I am providing my credentials to a 3rd party service configured by this organisation"
 msgstr "Entiendo que estoy proporcionando mis credenciales a un servicio de terceros configurado por esta organización"
+
+#: apps/remix/app/components/general/envelope-editor/envelope-editor-fields-drag-drop.tsx
+msgid "i.A. Unterschrift"
+msgstr ""
+
+#: apps/remix/app/components/general/envelope-editor/envelope-editor-fields-drag-drop.tsx
+msgid "i.V. Unterschrift"
+msgstr ""
 
 #: apps/remix/app/components/tables/admin-claims-table.tsx
 #: apps/remix/app/components/tables/admin-dashboard-users-table.tsx
@@ -8677,6 +8671,10 @@ msgstr ""
 msgid "Off"
 msgstr "Desactivado"
 
+#: apps/remix/app/components/forms/editor/editor-field-signature-form.tsx
+msgid "Ohne Zusatz"
+msgstr ""
+
 #: apps/remix/app/components/general/folder/folder-sort-dropdown.tsx
 msgid "Oldest first"
 msgstr ""
@@ -9531,6 +9529,10 @@ msgstr "Por favor, selecciona al menos un miembro para añadir al equipo."
 msgid "Please select how you'd like to receive your verification code."
 msgstr "Por favor, selecciona cómo te gustaría recibir tu código de verificación."
 
+#: packages/email/templates/document-invite.tsx
+msgid "Please sign your document {documentName}"
+msgstr ""
+
 #: apps/remix/app/components/general/settings-upsell/branding-upsell.tsx
 #: apps/remix/app/components/general/settings-upsell/email-domains-upsell.tsx
 msgid "Please sign: Example.pdf"
@@ -9605,6 +9607,10 @@ msgstr "Pos. Y:"
 #: apps/remix/app/routes/embed+/v1+/multisign+/_index.tsx
 msgid "Powered by"
 msgstr "Tecnología de"
+
+#: apps/remix/app/components/general/envelope-editor/envelope-editor-fields-drag-drop.tsx
+msgid "ppa. Unterschrift"
+msgstr ""
 
 #: apps/remix/app/components/dialogs/template-bulk-send-dialog.tsx
 msgid "Pre-formatted CSV template with example data."
@@ -10491,10 +10497,6 @@ msgstr "Código de respuesta"
 msgid "Response Headers"
 msgstr "Encabezados de respuesta"
 
-#: packages/ui/components/document/document-share-button.tsx
-msgid "Rest assured, your document is strictly confidential and will never be shared. Only your signing experience will be highlighted. Share your personalized signing card to showcase your signature!"
-msgstr "Ten la seguridad de que tu documento es estrictamente confidencial y nunca será compartido. Solo se destacará tu experiencia de firma. ¡Comparte tu tarjeta de firma personalizada para mostrar tu firma!"
-
 #: apps/remix/app/components/general/settings-upsell/sso-portal-upsell.tsx
 msgid "Restrict sign-ins by email domain and choose the default role"
 msgstr ""
@@ -11215,7 +11217,6 @@ msgstr ""
 
 #: apps/remix/app/components/general/document/document-page-view-dropdown.tsx
 #: apps/remix/app/components/tables/documents-table-action-dropdown.tsx
-#: packages/ui/components/document/document-share-button.tsx
 msgid "Share"
 msgstr "Compartir"
 
@@ -11227,10 +11228,6 @@ msgstr "Compartir tarjeta de firma"
 #: packages/lib/constants/template.ts
 msgid "Share the Link"
 msgstr "Compartir el enlace"
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "Share your signing experience!"
-msgstr "¡Comparte tu experiencia de firma!"
 
 #: apps/remix/app/components/tables/admin-document-recipient-item-table.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.public-profile.tsx
@@ -11724,7 +11721,6 @@ msgstr "Algunos firmantes no han sido asignados a un campo de firma. Asigne al m
 #: apps/remix/app/utils/toast-error-messages.ts
 #: apps/remix/app/utils/toast-error-messages.ts
 #: apps/remix/app/utils/toast-error-messages.ts
-#: packages/ui/components/document/document-share-button.tsx
 msgid "Something went wrong"
 msgstr "Algo salió mal"
 
@@ -11786,11 +11782,9 @@ msgstr "Algo salió mal al actualizar la suscripción de facturación del equipo
 msgid "Something went wrong while uploading this file"
 msgstr "Algo salió mal al cargar este archivo"
 
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.certificates.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.document.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.email.tsx
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.reminders.tsx
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.certificates.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.document.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.email.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.reminders.tsx
@@ -12901,14 +12895,6 @@ msgstr "El destinatario debe ver el documento para que se complete."
 #: apps/remix/app/routes/_authenticated+/admin+/email-domains.$id.tsx
 msgid "The SES identity has been deleted and recreated with the same keys. DNS records remain unchanged."
 msgstr "La identidad de SES se ha eliminado y vuelto a crear con las mismas claves. Los registros DNS permanecen sin cambios."
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "The sharing link could not be created at this time. Please try again."
-msgstr "El enlace de compartición no se pudo crear en este momento. Por favor, inténtelo de nuevo."
-
-#: packages/ui/components/document/document-share-button.tsx
-msgid "The sharing link has been copied to your clipboard."
-msgstr "El enlace de compartición ha sido copiado a su portapapeles."
 
 #: packages/ui/components/document/document-send-email-message-helper.tsx
 msgid "The signer's email"
@@ -14560,6 +14546,10 @@ msgstr ""
 msgid "Vertical Align"
 msgstr "Alineación vertical"
 
+#: apps/remix/app/components/forms/editor/editor-field-signature-form.tsx
+msgid "Vertretungszusatz"
+msgstr ""
+
 #: apps/remix/app/components/embed/multisign/multi-sign-document-list.tsx
 #: apps/remix/app/components/forms/2fa/view-recovery-codes-dialog.tsx
 #: apps/remix/app/components/general/document/document-page-view-button.tsx
@@ -15134,11 +15124,6 @@ msgstr "No pudimos enviar este documento en este momento. Por favor, inténtalo 
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.branding.tsx
 msgid "We were unable to update your branding preferences at this time, please try again later"
 msgstr "No pudimos actualizar tus preferencias de marca en este momento, por favor intenta de nuevo más tarde"
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.certificates.tsx
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.certificates.tsx
-msgid "We were unable to update your certificate preferences at this time, please try again later"
-msgstr ""
 
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.document.tsx
 #: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.document.tsx
@@ -16343,11 +16328,6 @@ msgstr "Tu envío masivo ha sido iniciado. Recibirás una notificación por corr
 #: packages/email/templates/bulk-send-complete.tsx
 msgid "Your bulk send operation for template \"{templateName}\" has completed."
 msgstr "Tu operación de envío masivo para la plantilla \"{templateName}\" ha sido completada."
-
-#: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.certificates.tsx
-#: apps/remix/app/routes/_authenticated+/t.$teamUrl+/settings.certificates.tsx
-msgid "Your certificate preferences have been updated"
-msgstr ""
 
 #: apps/remix/app/routes/_authenticated+/o.$orgUrl.settings.billing.tsx
 msgid "Your current {currentProductName} plan is past due. Please update your payment information."
