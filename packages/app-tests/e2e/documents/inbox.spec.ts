@@ -53,7 +53,7 @@ const selectInboxStatus = async (page: Page, status: InboxStatus) => {
 // ─── Behaviour ───────────────────────────────────────────────────────────────
 
 test.describe('Inbox - Search & Status Filter', () => {
-  test('should show every non-draft document by default', async ({ page }) => {
+  test('should default to pending and allow switching to completed or all documents', async ({ page }) => {
     const { user: sender, team: senderTeam } = await seedUser();
     const { user: recipient } = await seedUser();
 
@@ -75,13 +75,12 @@ test.describe('Inbox - Search & Status Filter', () => {
 
     await apiSignin({ page, email: recipient.email, redirectPath: '/inbox' });
 
-    // No status selected by default.
     expect(new URL(page.url()).searchParams.get('status')).toBeNull();
-    await expect(page.getByTestId('documents-table-status-filter')).toHaveText('Status');
+    await expect(page.getByTestId('documents-table-status-filter')).toContainText('Pending');
 
     await expect(inboxRow(page, 'Inbox Pending Document')).toBeVisible();
-    await expect(inboxRow(page, 'Inbox Completed Document')).toBeVisible();
-    await expect(inboxRow(page, 'Inbox Cancelled Document')).toBeVisible();
+    await expect(inboxRow(page, 'Inbox Completed Document')).not.toBeVisible();
+    await expect(inboxRow(page, 'Inbox Cancelled Document')).not.toBeVisible();
     await expect(inboxRow(page, 'Inbox Draft Document')).not.toBeVisible();
 
     await selectInboxStatus(page, DocumentStatus.COMPLETED);
@@ -100,13 +99,21 @@ test.describe('Inbox - Search & Status Filter', () => {
     // Clearing the filter returns to every non-draft document.
     await page.getByTestId('documents-table-status-filter').click();
     await page.getByRole('option', { name: 'Clear' }).click();
-    await page.waitForURL((url) => url.searchParams.get('status') === null);
+    await page.waitForURL((url) => url.searchParams.get('status') === 'ALL');
 
     await expect(page.getByTestId('documents-table-status-filter')).toHaveText('Status');
     await expect(inboxRow(page, 'Inbox Pending Document')).toBeVisible();
     await expect(inboxRow(page, 'Inbox Completed Document')).toBeVisible();
     await expect(inboxRow(page, 'Inbox Cancelled Document')).toBeVisible();
     await expect(inboxRow(page, 'Inbox Draft Document')).not.toBeVisible();
+
+    await page.reload();
+    await expect(page.getByTestId('documents-table-status-filter')).toHaveText('Status');
+    await expect(inboxRow(page, 'Inbox Completed Document')).toBeVisible();
+
+    await page.goto(`${WEBAPP_BASE_URL}/inbox`);
+    await expect(page.getByTestId('documents-table-status-filter')).toContainText('Pending');
+    await expect(inboxRow(page, 'Inbox Completed Document')).not.toBeVisible();
   });
 
   test('should offer every status except draft', async ({ page }) => {

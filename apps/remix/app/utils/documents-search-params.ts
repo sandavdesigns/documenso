@@ -10,7 +10,7 @@ export const DOCUMENTS_PERIOD_VALUES = ['7d', '14d', '30d'] as const;
  * parses and serialises the params identically.
  */
 export const documentsSearchParams = {
-  status: parseAsStringLiteral(Object.values(ExtendedDocumentStatus)),
+  status: parseAsStringLiteral(Object.values(ExtendedDocumentStatus)).withDefault(ExtendedDocumentStatus.PENDING),
   period: parseAsStringLiteral(DOCUMENTS_PERIOD_VALUES),
   senderIds: parseAsArrayOf(parseAsInteger),
   page: parseAsInteger,

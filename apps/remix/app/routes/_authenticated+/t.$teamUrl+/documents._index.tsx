@@ -163,7 +163,7 @@ export default function DocumentsPage() {
 
   const onResetFilters = () => {
     void setFindDocumentSearchParams({
-      status: null,
+      status: ExtendedDocumentStatus.ALL,
       senderIds: null,
       period: null,
       page: null,

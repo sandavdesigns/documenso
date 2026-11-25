@@ -60,7 +60,7 @@ export const checkDocumentCounts = async (page: Page, counts: DocumentStatusCoun
  * option again would clear the filter.
  */
 export const selectDocumentStatusFilter = async (page: Page, statusName: string) => {
-  const currentStatus = new URL(page.url()).searchParams.get('status');
+  const currentStatus = new URL(page.url()).searchParams.get('status') ?? 'PENDING';
 
   if (currentStatus === statusName.toUpperCase()) {
     return;
@@ -89,7 +89,7 @@ export const toggleDocumentSenderFilter = async (page: Page, senderName: string)
 export const clearDocumentStatusFilter = async (page: Page) => {
   const currentStatus = new URL(page.url()).searchParams.get('status');
 
-  if (!currentStatus) {
+  if (currentStatus === 'ALL') {
     return;
   }
 

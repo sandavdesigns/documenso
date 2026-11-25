@@ -27,7 +27,7 @@ test.describe.configure({
 });
 
 test.describe('Find Documents UI - Personal Context', () => {
-  test('should show all owned documents across statuses', async ({ page }) => {
+  test('should default to pending and allow viewing all owned documents', async ({ page }) => {
     const { user: owner, team, organisation } = await seedUser();
     const { user: recipient } = await seedUser();
 
@@ -61,7 +61,18 @@ test.describe('Find Documents UI - Personal Context', () => {
       redirectPath: `/t/${team.url}/documents`,
     });
 
+    await expect(page.getByTestId('documents-table-status-filter')).toContainText('Pending');
+    await expect(page.getByRole('link', { name: 'Personal Pending Doc', exact: true })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Personal Draft Doc', exact: true })).not.toBeVisible();
+    await expect(page.getByRole('link', { name: 'Personal Completed Doc', exact: true })).not.toBeVisible();
+
     await checkDocumentCounts(page, { draft: 1, pending: 1, completed: 1, all: 3 });
+    await expect(page).toHaveURL(/status=ALL/);
+    await expect(page.getByRole('link', { name: 'Personal Draft Doc', exact: true })).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Personal Completed Doc', exact: true })).toBeVisible();
+
+    await page.reload();
+    await expect(page.getByRole('link', { name: 'Personal Completed Doc', exact: true })).toBeVisible();
   });
 
   test('received documents from other teams should NOT appear in personal context', async ({ page }) => {

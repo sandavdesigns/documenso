@@ -62,7 +62,7 @@ export const DocumentsTableStatusFilter = ({
 
   const onChange = (newStatus: string | null) => {
     void setSearchParams({
-      status: selectableStatuses.find((value) => value === newStatus) ?? null,
+      status: selectableStatuses.find((value) => value === newStatus) ?? ExtendedDocumentStatus.ALL,
       page: null,
     });
   };
