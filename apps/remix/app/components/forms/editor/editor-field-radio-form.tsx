@@ -1,6 +1,5 @@
 import {
   DEFAULT_FIELD_FONT_SIZE,
-  FIELD_RADIO_META_DEFAULT_VALUES,
   type TRadioFieldMeta as RadioFieldMeta,
   ZRadioFieldMeta,
 } from '@documenso/lib/types/field-meta';
@@ -65,7 +64,7 @@ export const EditorFieldRadioForm = ({
     mode: 'onChange',
     defaultValues: {
       label: value.label || '',
-      values: value.values ?? structuredClone(FIELD_RADIO_META_DEFAULT_VALUES.values),
+      values: value.values || [{ id: 1, checked: false, value: t`Default value` }],
       required: value.required || false,
       readOnly: value.readOnly || false,
       direction: value.direction || 'vertical',

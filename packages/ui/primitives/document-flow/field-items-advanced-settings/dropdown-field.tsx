@@ -1,5 +1,8 @@
 import { validateDropdownField } from '@documenso/lib/advanced-fields-validation/validate-dropdown';
-import type { TDropdownFieldMeta as DropdownFieldMeta } from '@documenso/lib/types/field-meta';
+import {
+  type TDropdownFieldMeta as DropdownFieldMeta,
+  FIELD_DROPDOWN_META_DEFAULT_VALUES,
+} from '@documenso/lib/types/field-meta';
 import { Button } from '@documenso/ui/primitives/button';
 import { Input } from '@documenso/ui/primitives/input';
 import { Label } from '@documenso/ui/primitives/label';
@@ -25,10 +28,12 @@ export const DropdownFieldAdvancedSettings = ({
   const { _ } = useLingui();
 
   const [showValidation, setShowValidation] = useState(false);
-  const [values, setValues] = useState(fieldState.values ?? [{ value: _(msg`Option 1`) }]);
+  const [values, setValues] = useState(
+    fieldState.values ?? structuredClone(FIELD_DROPDOWN_META_DEFAULT_VALUES.values) ?? [],
+  );
   const [readOnly, setReadOnly] = useState(fieldState.readOnly ?? false);
   const [required, setRequired] = useState(fieldState.required ?? false);
-  const [defaultValue, setDefaultValue] = useState(fieldState.defaultValue ?? _(msg`Option 1`));
+  const [defaultValue, setDefaultValue] = useState(fieldState.defaultValue ?? '');
 
   const addValue = () => {
     setValues([...values, { value: _(msg`New option`) }]);
@@ -81,11 +86,11 @@ export const DropdownFieldAdvancedSettings = ({
   }, [values]);
 
   useEffect(() => {
-    setValues(fieldState.values ?? [{ value: _(msg`Option 1`) }]);
+    setValues(fieldState.values ?? structuredClone(FIELD_DROPDOWN_META_DEFAULT_VALUES.values) ?? []);
   }, [fieldState.values]);
 
   useEffect(() => {
-    setDefaultValue(fieldState.defaultValue ?? _(msg`Option 1`));
+    setDefaultValue(fieldState.defaultValue ?? '');
   }, [fieldState.defaultValue]);
 
   return (

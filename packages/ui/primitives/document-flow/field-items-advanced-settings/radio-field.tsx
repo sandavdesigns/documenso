@@ -1,8 +1,5 @@
 import { validateRadioField } from '@documenso/lib/advanced-fields-validation/validate-radio';
-import {
-  FIELD_RADIO_META_DEFAULT_VALUES,
-  type TRadioFieldMeta as RadioFieldMeta,
-} from '@documenso/lib/types/field-meta';
+import type { TRadioFieldMeta as RadioFieldMeta } from '@documenso/lib/types/field-meta';
 import { Button } from '@documenso/ui/primitives/button';
 import { Checkbox } from '@documenso/ui/primitives/checkbox';
 import { Input } from '@documenso/ui/primitives/input';
@@ -31,9 +28,7 @@ export const RadioFieldAdvancedSettings = ({
   const { _ } = useLingui();
 
   const [showValidation, setShowValidation] = useState(false);
-  const [values, setValues] = useState(
-    fieldState.values ?? structuredClone(FIELD_RADIO_META_DEFAULT_VALUES.values) ?? [],
-  );
+  const [values, setValues] = useState(fieldState.values ?? [{ id: 1, checked: false, value: _(msg`Default value`) }]);
   const [readOnly, setReadOnly] = useState(fieldState.readOnly ?? false);
   const [required, setRequired] = useState(fieldState.required ?? false);
 
@@ -102,7 +97,7 @@ export const RadioFieldAdvancedSettings = ({
   };
 
   useEffect(() => {
-    setValues(fieldState.values ?? structuredClone(FIELD_RADIO_META_DEFAULT_VALUES.values) ?? []);
+    setValues(fieldState.values ?? [{ id: 1, checked: false, value: _(msg`Default value`) }]);
   }, [fieldState.values]);
 
   useEffect(() => {

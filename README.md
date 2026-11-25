@@ -41,7 +41,7 @@
 - Document lists and the personal inbox initially show pending documents for all users.
 - Explicit status filters remain available. Clearing or resetting the status filter uses `status=ALL`, so all documents remain accessible without changing the default for new visits.
 - These defaults only affect the user interface; API consumers and existing document data are unchanged.
-- Newly added radio fields offer `genehmigt` and `abgelehnt`, with neither selected. Existing or custom option lists are preserved.
+- Newly added dropdown fields offer `genehmigt` and `abgelehnt`, with neither selected. Existing or custom option lists are preserved. Radio fields retain their original defaults.
 
 ## About Documenso
 

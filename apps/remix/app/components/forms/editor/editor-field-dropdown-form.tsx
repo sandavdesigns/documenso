@@ -1,4 +1,8 @@
-import { DEFAULT_FIELD_FONT_SIZE, type TDropdownFieldMeta as DropdownFieldMeta } from '@documenso/lib/types/field-meta';
+import {
+  DEFAULT_FIELD_FONT_SIZE,
+  type TDropdownFieldMeta as DropdownFieldMeta,
+  FIELD_DROPDOWN_META_DEFAULT_VALUES,
+} from '@documenso/lib/types/field-meta';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@documenso/ui/primitives/form/form';
 import { Input } from '@documenso/ui/primitives/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@documenso/ui/primitives/select';
@@ -76,8 +80,8 @@ export const EditorFieldDropdownForm = ({
     resolver: zodResolver(ZDropdownFieldFormSchema),
     mode: 'onChange',
     defaultValues: {
-      defaultValue: value.defaultValue,
-      values: value.values || [{ value: t`Option 1` }],
+      defaultValue: value.defaultValue ?? FIELD_DROPDOWN_META_DEFAULT_VALUES.defaultValue,
+      values: value.values ?? structuredClone(FIELD_DROPDOWN_META_DEFAULT_VALUES.values),
       required: value.required || false,
       readOnly: value.readOnly || false,
       fontSize: value.fontSize || DEFAULT_FIELD_FONT_SIZE,

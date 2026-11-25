@@ -396,10 +396,7 @@ export const FIELD_EMAIL_META_DEFAULT_VALUES: TEmailFieldMeta = {
 export const FIELD_RADIO_META_DEFAULT_VALUES: TRadioFieldMeta = {
   type: 'radio',
   fontSize: DEFAULT_FIELD_FONT_SIZE,
-  values: [
-    { id: 1, checked: false, value: 'genehmigt' },
-    { id: 2, checked: false, value: 'abgelehnt' },
-  ],
+  values: [{ id: 1, checked: false, value: '' }],
   required: false,
   readOnly: false,
   direction: 'vertical',
@@ -419,7 +416,7 @@ export const FIELD_CHECKBOX_META_DEFAULT_VALUES: TCheckboxFieldMeta = {
 export const FIELD_DROPDOWN_META_DEFAULT_VALUES: TDropdownFieldMeta = {
   type: 'dropdown',
   fontSize: DEFAULT_FIELD_FONT_SIZE,
-  values: [{ value: 'Option 1' }],
+  values: [{ value: 'genehmigt' }, { value: 'abgelehnt' }],
   defaultValue: '',
   required: false,
   readOnly: false,

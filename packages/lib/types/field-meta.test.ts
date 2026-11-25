@@ -3,30 +3,25 @@ import { describe, expect, it } from 'vitest';
 
 import { getSignatureVariantLabel, ZEnvelopeFieldAndMetaSchema, ZSignatureFieldMeta } from './field-meta';
 
-describe('radio field company defaults', () => {
+describe('dropdown field company defaults', () => {
   it('creates approval choices without preselecting a response', () => {
-    const field = ZEnvelopeFieldAndMetaSchema.parse({ type: FieldType.RADIO });
+    const field = ZEnvelopeFieldAndMetaSchema.parse({ type: FieldType.DROPDOWN });
 
     expect(field.fieldMeta).toMatchObject({
-      type: 'radio',
-      values: [
-        { id: 1, value: 'genehmigt', checked: false },
-        { id: 2, value: 'abgelehnt', checked: false },
-      ],
+      type: 'dropdown',
+      values: [{ value: 'genehmigt' }, { value: 'abgelehnt' }],
+      defaultValue: '',
     });
   });
 
   it('preserves existing custom choices and their selected value', () => {
     const fieldMeta = {
-      type: 'radio',
-      direction: 'horizontal',
-      values: [
-        { id: 4, value: 'Custom A', checked: false },
-        { id: 7, value: 'Custom B', checked: true },
-      ],
+      type: 'dropdown',
+      values: [{ value: 'Custom A' }, { value: 'Custom B' }],
+      defaultValue: 'Custom B',
     };
 
-    const field = ZEnvelopeFieldAndMetaSchema.parse({ type: FieldType.RADIO, fieldMeta });
+    const field = ZEnvelopeFieldAndMetaSchema.parse({ type: FieldType.DROPDOWN, fieldMeta });
 
     expect(field.fieldMeta).toMatchObject(fieldMeta);
   });
